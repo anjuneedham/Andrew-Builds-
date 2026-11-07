@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Outreach Desk</title>
+<link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#034694">
+<link rel="icon" href="/icon-192.png"><link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="stylesheet" href="/css/fonts.css"><link rel="stylesheet" href="/css/app.css">
+</head><body>
+
+<div id="kickoff" role="status" aria-live="polite">
+  
+  <div>    <h1>Outreach<b>·</b>Desk</h1>
+    <p id="ko-msg">Opening your desk</p>
+    <div class="stripe" aria-hidden="true"><i></i></div></div>
+</div>
+
+<div id="auth" hidden>
+  <section class="authbox" id="msgbox" hidden><div class="authbrand"><div class="crest">OD</div><h2>Outreach Desk</h2></div><p id="msg" class="err" role="alert"></p></section>
+  <section class="authbox" id="setup1" hidden><h2>First-time setup</h2>
+    <p class="sub">Enter the OWNER_SETUP_TOKEN you set in Vercel and choose a password (12+ characters).</p>
+    <input id="s_token" type="password" placeholder="Setup token" autocomplete="off" aria-label="Setup token">
+    <input id="s_pw" type="password" placeholder="New password" autocomplete="new-password" aria-label="New password">
+    <button class="btn" id="s_begin">Continue</button><p class="err" data-err></p></section>
+  <section class="authbox" id="setup2" hidden><h2>Add your authenticator</h2>
+    <p class="sub">In Google Authenticator: Add account, Enter a setup key, then type this key.</p>
+    <code class="key" id="s_secret"></code>
+    <input id="s_code" inputmode="numeric" placeholder="6-digit code" autocomplete="off" aria-label="6-digit code">
+    <button class="btn" id="s_confirm">Finish setup</button><p class="err" data-err></p></section>
+  <section class="authbox" id="setup3" hidden><h2>Recovery codes</h2>
+    <p class="err">Shown once. Each works once. Store them offline.</p>
+    <div id="s_codes" class="list"></div><button class="btn" id="s_done">I saved them</button></section>
+  <section class="authbox" id="login" hidden>
+    <div class="authbrand"><div class="crest">OD</div><h2>Owner sign-in</h2></div>
+    <input id="l_pw" type="password" placeholder="Password" autocomplete="current-password" aria-label="Password">
+    <input id="l_code" inputmode="numeric" placeholder="6-digit code (or recovery code)" autocomplete="one-time-code" aria-label="Authenticator code">
+    <button class="btn gold" id="l_go">Sign in</button><p class="err" data-err></p></section>
+</div>
+
+<div id="shell" hidden>
+  <aside class="side" aria-label="Main">
+    <div class="brand"><div class="crest" aria-hidden="true">OD</div><div><b>Outreach Desk</b><small>Your outreach, tracked</small></div></div>
+    <nav class="nav" id="nav-side"></nav>
+    <div class="grow"></div>
+    <div class="sidefoot">
+      <span class="modechip" id="modechip">MOCK</span>
+      <button class="btn small" id="theme">Switch theme</button>
+      <button class="btn small" id="signout">Sign out</button>
+      <button class="btn small" id="signoutall">Sign out everywhere</button>
+    </div>
+  </aside>
+  <div class="main">
+    <header class="top"><div><h1 id="page-title">Overview</h1><p id="page-sub"></p></div>
+      <div class="actions">
+        <button class="btn small ghost hide-sm" id="install" hidden>Install app</button></div></header>
+    <main id="view" tabindex="-1"></main>
+  </div>
+  <nav class="tabbar" id="nav-tabs" aria-label="Main"></nav>
+</div>
+
+<dialog id="drawer"><div class="head"><strong id="drawer-title"></strong><button class="btn small ghost" id="drawer-close" style="color:#fff;border-color:rgba(255,255,255,.4)">Close</button></div><div class="body" id="drawer-body"></div></dialog>
+<div id="toasts" aria-live="polite"></div>
+
+<script src="/js/core.js"></script>
+<script src="/js/sales.js"></script>
+<script src="/js/playbooks.js"></script>
+<script src="/js/insights.js"></script>
+<script src="/js/main.js"></script>
+</body></html>

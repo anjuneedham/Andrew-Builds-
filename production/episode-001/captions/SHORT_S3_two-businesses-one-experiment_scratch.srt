@@ -1,0 +1,93 @@
+1
+00:00:00,400 --> 00:00:01,360
+One experiment.
+
+2
+00:00:01,389 --> 00:00:02,349
+Two businesses.
+
+3
+00:00:02,379 --> 00:00:03,274
+No guarantees.
+
+4
+00:00:03,302 --> 00:00:04,966
+Business one: I'm
+reaching
+
+5
+00:00:05,017 --> 00:00:06,361
+out to real companies
+
+6
+00:00:06,402 --> 00:00:08,641
+and trying to win paying
+customers.
+
+7
+00:00:08,711 --> 00:00:11,398
+Business two: the
+software I'm building to
+
+8
+00:00:11,481 --> 00:00:12,633
+run that outreach.
+
+9
+00:00:12,668 --> 00:00:15,419
+If it genuinely helps
+me, it might become a
+
+10
+00:00:15,504 --> 00:00:17,104
+product for other
+people.
+
+11
+00:00:17,153 --> 00:00:17,793
+Right now?
+
+12
+00:00:17,813 --> 00:00:19,732
+The software has one
+user: me.
+
+13
+00:00:19,792 --> 00:00:20,303
+And
+
+14
+00:00:23,871 --> 00:00:24,383
+.
+
+15
+00:00:24,399 --> 00:00:25,806
+That's the experiment.
+
+16
+00:00:25,850 --> 00:00:28,601
+If the first business
+works, the tool earns
+
+17
+00:00:28,686 --> 00:00:29,326
+its place.
+
+18
+00:00:29,345 --> 00:00:32,097
+If the tool works, it
+might become a second
+
+19
+00:00:32,182 --> 00:00:32,757
+business.
+
+20
+00:00:32,775 --> 00:00:35,782
+Follow along and watch
+whether either one does.
+
+21
+00:00:35,875 --> 00:00:36,579
+I'm Andrew.
+
