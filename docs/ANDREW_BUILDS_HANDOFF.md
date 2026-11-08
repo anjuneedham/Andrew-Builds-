@@ -64,3 +64,58 @@ G0 confirmation + D1/D7; decisions D8-D14; questions Q1-Q10 in `docs/PLATFORM_DE
 After Andrew approves P0, start **P1 Content calendar + idea backlog** (plan section P1): series/episodes/ideas CRUD routes under `/api/content/*` using `content_session`; month/week calendar in `America/Jamaica`; promote idea -> episode; episode status transitions as a state machine; audit on delete; Playwright at 1280x800 and 800x1280. Episode statuses now include QA (003). Do NOT start P1 until approved.
 
 Suggested approval reply: **"Approved: P0 accepted. G0, D1, D7 and D8-D14 approved. Begin P1 using a throwaway test database."** (edit as needed; answer Q7-Q9)
+
+---
+
+# CONTENT PLAN (added 2026-11-08) - STATUS: PROPOSED, NOT APPROVED
+
+Content work is documentation only. Nothing was recorded, edited, published, deployed, imported or written to any database. The platform was NOT configured with these templates: only P0 exists (read-only page, no editing screens, no import tools), so there was nothing to import into without approval (G1/G2).
+
+## Confirmed platform capabilities (verified in code on this branch, P0)
+- Schema for series, episodes (IDEA → SCRIPTING → READY_TO_RECORD → RECORDED → EDITING → QA → READY_TO_PUBLISH → PUBLISHED), ideas, scripts/lines/claims/sources, shots, assets, posts, metrics (append-only), growth_log, content_lead_links, course_plan/modules, hide_list.
+- DB-enforced: claim gate (FACT lines need CONFIRMED claims, Q7 strict), script freeze, claim-downgrade cascade, course READY only at 3600 s, post approval/publish timestamps.
+- Seeded: 4 series (`course`, `bootstrapper-experiment`, `andrew-builds`, `shorts`) and course_plan "From Sales to SaaS".
+- NOT available: any create/edit UI or API, calendar, app-layer checks (banned phrases, hide list, disclaimers), imports. Metrics table lacks impressions, CTR, AVD, retention, profile visits, link clicks. Asset kinds lack camera/document/short export.
+- Existing file pipeline `production/tools/*` (produce, qa, make_docs, new_episode, suggest_content) works per its README; not re-run this session.
+
+## Content system (template locations)
+| Doc | Purpose |
+|---|---|
+| `docs/CONTENT_STRATEGY.md` | Positioning, 5 pillars, documentary format, rules, workflow + gates, reuse map |
+| `docs/COURSE_60_MINUTE_PLAN.md` | From Sales to SaaS: 7 sections, 15 lessons, exactly 60:00 |
+| `docs/REPEATABLE_EPISODE_TEMPLATE.md` | 13-field episode plan |
+| `docs/REPEATABLE_SCRIPT_TEMPLATE.md` | Line-by-line script with kinds + claim IDs; claim checker |
+| `docs/SHOT_LIST_TEMPLATE.md` | Shot columns + tablet capture rules |
+| `docs/ASSET_REGISTER_TEMPLATE.md` | Naming, versioning, types, register |
+| `docs/PUBLISH_CHECKLIST.md` | Mandatory per-post checklist |
+| `docs/REPURPOSING_PLAYBOOK.md` | Long → short process, standalone tests |
+| `docs/METRICS_REVIEW_PLAYBOOK.md` | Weekly/monthly review; platform vs business outcomes |
+
+## Summary
+- **Pillars:** P1 Build in Public · P2 SaaS with AI · P3 Founder Lessons · P4 Trading-Journal Journey · P5 Agriloop Decision Documentary.
+- **Course:** Start here 4:00 · What sales taught me 12:00 · Building with Claude Code 18:00 · Validation: Agriloop 12:00 · TradeNotes experiment 8:00 · Documenting the journey 4:00 · Close 2:00 = **60:00**.
+- **Evidence rules:** every factual sentence = FACT line citing CONFIRMED claim(s); PARTIAL/PLANNED/UNKNOWN only in REFLECTION/OPINION/HYPOTHESIS/QUESTION lines; banned phrases; trading disclaimer; consent; hide list; nothing published without Andrew.
+- **Workflow / gates:** IDEA →G-IDEA→ evidence → plan → script →G-SCRIPT→ shot list → recording →G-RECORD→ edit →G-EDIT→ QA →G-QA→ G-PUBLISH → Andrew publishes → metrics → review. Approval = explicit "Approved G-<GATE> <code>".
+- **Repurposing:** >= 3 shorts per episode only when moments pass 6 standalone tests; shorts are `shorts` episodes with `parent_episode_id`.
+- **Metrics:** manual, 48 h / 7 d / 28 d; business outcomes (inquiries, attributed leads via cta_code) kept separate.
+
+## Outstanding questions (content)
+- **Q1 (still open)** `founder-story-dossier/` not found (timeline, claims register, course blueprint, S01-S46 shot list, funnel, knowledge gaps, founder answers). Course plan and templates were built without it and must be reconciled when it arrives.
+- **Q5 (still open)** exact trading risk disclosure wording.
+- **Q4 (still open)** may Agriloop-brand briefs (85 found, brief says 84) be used for Andrew Builds content?
+- Q-C1 Which customer-service / corporate employers, dates, and online ventures may be named? (needed for course 2.1-2.3, P3)
+- Q-C2 Agriloop real beta numbers (listings, farmers, buyers, transactions) with sources, or confirm "very little traction" is the only public statement.
+- Q-C3 Course host: YouTube (free) or a course platform? Free or paid? (no funnel was found)
+- Q-C4 TradeNotes repo name and first-commit date; is it attached to any session?
+- Q-C5 Consent: any people (family, farmers, YardScale clients/team) Andrew wants to show? Written consent needed.
+- Q-C6 Is episode-001/002 (Outreach Desk-focused) still wanted, or replaced by the Bootstrapper Experiment arcs A/B?
+- Q-C7 Approve proposed schema additions (metrics gap columns, asset kinds) as a later migration?
+
+## Current approval status
+Content strategy, course plan and templates: **NOT APPROVED** (gate CS-0). Platform P0 approval still pending as above.
+
+## Exact next step for CONTENT-BUILD (only after CS-0 approval)
+1. Ask Andrew Q-C2 and Q-C4; turn answers into claims (C-###) with sources in a working claims register `production/claims/CLAIMS_REGISTER.md` (file-based until P2 UI exists).
+2. Run `production/tools/suggest_content.py` / review git logs to list real moments for Arc A (Agriloop, last 60 days); propose 3 episode ideas to Andrew for **G-IDEA**. No calendar dates until approved.
+3. For the approved idea: `python3 production/tools/new_episode.py <N> "<title>"`, fill REPEATABLE_EPISODE_TEMPLATE, then a draft script in REPEATABLE_SCRIPT_TEMPLATE format, then stop at **G-SCRIPT**.
+Suggested reply: "Approved CS-0: content strategy, course plan and templates accepted." (plus answers to Q1, Q5, Q-C1..C7).
