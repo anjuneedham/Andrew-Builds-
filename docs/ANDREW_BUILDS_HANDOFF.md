@@ -3,6 +3,41 @@
 Last updated: 2026-11-08. **Implementation phase: P0 Foundation BUILT + TESTED, stopped at its approval gate. P1 not started.**
 Approval status: G0 assumed from the kickoff brief (verbatim wording not given; please confirm). No G1/G2/G3/G4 approvals requested or used.
 
+## CONTENT BUILD (Sonnet): current package (updated 2026-11-08, evening)
+**Stage: GATE 1 (G-IDEA). Idea PROPOSED. NOT approved. Nothing scripted, recorded, edited, published or imported.**
+
+| Field | State |
+|---|---|
+| Current content package | **E003** (internal ID), recommended working title "My first TradeNotes test found a bug. My first deploy failed four times." Arc B, pillars P2 (SaaS with AI) primary + P4 (trading-journal journey) secondary |
+| Package location | Not created yet. On approval: `production/episode-003/` via `new_episode.py 3 "<title>"`, plus the 11 package files (`content-brief.md` ... `publish-checklist.md`) in `production/episode-003/package/` |
+| Script status | Not started (waits for G-IDEA) |
+| Claim-check status | Not started. Evidence pre-checked read-only at Gate 1 (see below). New claims needed beyond C-001..C-036 are listed in section "Claims to add at Gate 2" |
+| Founder approvals | G-IDEA: **pending**. CS-0 (strategy/templates): **still pending** (this build follows it provisionally; Andrew to confirm) |
+| Recording / Editing / QA / Publishing | Not started / Not started / Not started / **Never publish without explicit authorization** |
+| Short-form opportunities (candidates, unscripted) | (1) the isolation test that found the leak; (2) "Vulnerable version of Next.js detected": reading the deploy log; (3) "Passing tests is not shipped": local green vs 4 failed deploys |
+| Alternatives offered | Idea 2 "52 tables, 0 orders: 22 days to decide on Agriloop" (blocked on Q-A2, numbers refresh); Idea 3 "The 0:02 problem" (fully evidenced today, smallest) |
+
+### Evidence verified at Gate 1 (read-only, 8 Nov 2026)
+- TradeNotes repo (public, read via anonymous clone): 6 commits, 2026-11-08 13:52:25 to 17:38:57 UTC. Commit `93ed914` (15:18:32 UTC): two-user isolation tests (15 checks) found trades could reference another user's account/strategy; fixed with ownership triggers. `docs/TEST_RESULTS.md` records 38 unit tests + DB isolation checks passing locally (I did NOT re-run them; re-run on camera).
+- Vercel (team "Yardscale Digital", read-only): exactly 4 production deployments for `tradenotes`, all `ERROR`, each `errorCode VULNERABLE_NEXTJS_VERSION`, message "Vulnerable version of Next.js detected, please update immediately.", step `direct:build`; created 15:23, 17:15, 17:33, 17:39 UTC. `package.json` pins `next` 15.5.4. No READY deployment exists.
+- Commit trailers show Claude as author/co-author on every commit (supports C-019 in general; Andrew's exact split is still Q-D1).
+
+### Findings that affect production (read these)
+1. **Public repo exposes draft copy the founder contradicted (P-10):** `TradeNotes/docs/SALES_PLAYBOOK.md` lines 6 and 18 say "kept making the same mistakes until I started journaling" and "the thing that changed my results". `CONTENT_ENGINE.md` has the same idea. Do not show or quote these. Fix the copy in a TradeNotes session.
+2. **Public repo contains payment checkout URLs** in `src/lib/plans.ts`. Never show that file on camera.
+3. **Commit messages and Vercel deployment metadata contain a Claude session URL** (hide-list item). Crop/avoid GitHub commit pages and Vercel deployment detail "Source" panels, or blur.
+4. **TradeNotes shares the Agriloop Supabase project** (schema `tradenotes`). The Supabase dashboard would expose Agriloop tables and counts: do not record it for this episode.
+5. **Number conflict for Arc A (not used in E003):** C-011 says about 10 user rows / about 2 listings (8 Nov); the growth log (6 Nov) says 6 accounts / 0 active listings. Plausible growth, but re-verify before any Agriloop episode; the register row stays "refresh before recording".
+6. Trading disclaimer wording (Q5) still unapproved. A draft is proposed in the Gate 1 message.
+
+### Claims to add at Gate 2 (do not treat as established yet)
+N-1 two-user isolation tests (15 checks) found trades could reference another user's account or strategy; fixed with ownership triggers (commit `93ed914`; CONFIRMED when added, source: commit + TEST_RESULTS.md). N-2 TradeNotes has had exactly four production deploys, all failed with `VULNERABLE_NEXTJS_VERSION` (refines C-025; re-check on the day). N-3 TradeNotes pins Next.js 15.5.4 (commit/package.json). N-4 Claude Code wrote the TradeNotes commits (git trailers; split with Andrew = Q-D1). The fix-on-camera outcome is UNKNOWN until recorded.
+
+### Known gaps / questions for Andrew (Gate 1)
+Q-D2 does he build on the tablet or only record? Q-D1 exact split of work. His own words: why TradeNotes, what he decided or checked during the day (marked `[RECORD]`, never invented). Approval to upgrade Next.js on camera (S28). Disclaimer wording (Q5). Public numbering of E001/E002 vs E003 (Q-B2). Repo visibility (Q-N1).
+
+**Next approval required:** Andrew replies `Approved G-IDEA E003` (or picks Idea 2/3, or edits). **Exact next action:** on approval, scaffold `production/episode-003/`, write `content-brief.md`, then draft `script.md` + `claims-register.md` and STOP at G-SCRIPT.
+
 ## Repositories
 | Repo | Role | Branch |
 |---|---|---|
