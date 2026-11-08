@@ -67,55 +67,66 @@ Suggested approval reply: **"Approved: P0 accepted. G0, D1, D7 and D8-D14 approv
 
 ---
 
-# CONTENT PLAN (added 2026-11-08) - STATUS: PROPOSED, NOT APPROVED
+# CONTENT PLAN (2026-11-08, v2 reconciled with the founder dossier) - STATUS: PROPOSED, NOT APPROVED
 
-Content work is documentation only. Nothing was recorded, edited, published, deployed, imported or written to any database. The platform was NOT configured with these templates: only P0 exists (read-only page, no editing screens, no import tools), so there was nothing to import into without approval (G1/G2).
+Documentation only. Nothing was recorded, edited, published, deployed, imported or written to any database. The platform was NOT configured with these templates: only P0 exists (read-only page, no editing screens, no import), so there was nothing to import into without approval (G1/G2).
 
-## Confirmed platform capabilities (verified in code on this branch, P0)
-- Schema for series, episodes (IDEA → SCRIPTING → READY_TO_RECORD → RECORDED → EDITING → QA → READY_TO_PUBLISH → PUBLISHED), ideas, scripts/lines/claims/sources, shots, assets, posts, metrics (append-only), growth_log, content_lead_links, course_plan/modules, hide_list.
-- DB-enforced: claim gate (FACT lines need CONFIRMED claims, Q7 strict), script freeze, claim-downgrade cascade, course READY only at 3600 s, post approval/publish timestamps.
-- Seeded: 4 series (`course`, `bootstrapper-experiment`, `andrew-builds`, `shorts`) and course_plan "From Sales to SaaS".
-- NOT available: any create/edit UI or API, calendar, app-layer checks (banned phrases, hide list, disclaimers), imports. Metrics table lacks impressions, CTR, AVD, retention, profile visits, link clicks. Asset kinds lack camera/document/short export.
-- Existing file pipeline `production/tools/*` (produce, qa, make_docs, new_episode, suggest_content) works per its README; not re-run this session.
+## Source material (resolved: dossier found)
+Andrew supplied `ANDREW_BUILDS_CONTEXT_PACK.md` (236 KB: dossier files 00-13 plus key source docs). Path in the session that received it: `/root/.claude/uploads/.../502edbc7-ANDREW_BUILDS_CONTEXT_PACK.md`.
+**It is deliberately NOT committed:** `Andrew-Builds-` is a PUBLIC repo and the pack holds traction numbers, partner/user-adjacent detail and strategy. Next session: ask Andrew to re-attach it, or to make this repo private / name a private repo for it (decision Q-N1).
+A search of all 37 GitHub repos found no other copy. Dossier research date 8 Nov 2026; numbers must be re-verified on recording day.
 
-## Content system (template locations)
+## Confirmed platform capabilities (verified in code, P0)
+- Schema: series, episodes (IDEA, SCRIPTING, READY_TO_RECORD, RECORDED, EDITING, QA, READY_TO_PUBLISH, PUBLISHED, ARCHIVED), ideas, scripts/lines/claims/sources, shots, assets, posts, metrics (append-only), growth_log, content_lead_links, course_plan/modules, hide_list. Seeded: 4 series, course_plan "From Sales to SaaS".
+- DB-enforced: claim gate (FACT lines need CONFIRMED claims; Q7 strict), script freeze, claim-downgrade cascade, course READY only at 3600 s, post timestamps.
+- NOT available: any create/edit UI or API (only `GET /api/content/meta|health`), calendar, app-level checks (banned phrases, hide list, disclaimers), imports. Metrics lack impressions, CTR, retention, profile visits, link clicks; asset kinds lack camera/document/short export.
+- `production/tools/*` pipeline exists per its README; not re-run.
+
+## Template and content locations
 | Doc | Purpose |
 |---|---|
-| `docs/CONTENT_STRATEGY.md` | Positioning, 5 pillars, documentary format, rules, workflow + gates, reuse map |
-| `docs/COURSE_60_MINUTE_PLAN.md` | From Sales to SaaS: 7 sections, 15 lessons, exactly 60:00 |
-| `docs/REPEATABLE_EPISODE_TEMPLATE.md` | 13-field episode plan |
-| `docs/REPEATABLE_SCRIPT_TEMPLATE.md` | Line-by-line script with kinds + claim IDs; claim checker |
-| `docs/SHOT_LIST_TEMPLATE.md` | Shot columns + tablet capture rules |
-| `docs/ASSET_REGISTER_TEMPLATE.md` | Naming, versioning, types, register |
-| `docs/PUBLISH_CHECKLIST.md` | Mandatory per-post checklist |
-| `docs/REPURPOSING_PLAYBOOK.md` | Long → short process, standalone tests |
-| `docs/METRICS_REVIEW_PLAYBOOK.md` | Weekly/monthly review; platform vs business outcomes |
+| `docs/CONTENT_STRATEGY.md` | positioning, 5 pillars, documentary format, rules, workflow + gates, reuse map |
+| `docs/COURSE_60_MINUTE_PLAN.md` | **v2**: dossier modules M0-M9, exactly 60:00, shot IDs, claim IDs, S01-S46 status (Appendix A) |
+| `docs/CLAIMS_REGISTER.md` | **new**: 36 seed claims (C-001..C-036) + prohibited statements P-1..P-11 |
+| `REPEATABLE_EPISODE_TEMPLATE.md`, `REPEATABLE_SCRIPT_TEMPLATE.md`, `SHOT_LIST_TEMPLATE.md`, `ASSET_REGISTER_TEMPLATE.md`, `PUBLISH_CHECKLIST.md`, `REPURPOSING_PLAYBOOK.md`, `METRICS_REVIEW_PLAYBOOK.md` | as before (shot/asset docs now carry the dossier hide list, tablet settings and `CRS_` naming) |
 
-## Summary
-- **Pillars:** P1 Build in Public · P2 SaaS with AI · P3 Founder Lessons · P4 Trading-Journal Journey · P5 Agriloop Decision Documentary.
-- **Course:** Start here 4:00 · What sales taught me 12:00 · Building with Claude Code 18:00 · Validation: Agriloop 12:00 · TradeNotes experiment 8:00 · Documenting the journey 4:00 · Close 2:00 = **60:00**.
-- **Evidence rules:** every factual sentence = FACT line citing CONFIRMED claim(s); PARTIAL/PLANNED/UNKNOWN only in REFLECTION/OPINION/HYPOTHESIS/QUESTION lines; banned phrases; trading disclaimer; consent; hide list; nothing published without Andrew.
-- **Workflow / gates:** IDEA →G-IDEA→ evidence → plan → script →G-SCRIPT→ shot list → recording →G-RECORD→ edit →G-EDIT→ QA →G-QA→ G-PUBLISH → Andrew publishes → metrics → review. Approval = explicit "Approved G-<GATE> <code>".
-- **Repurposing:** >= 3 shorts per episode only when moments pass 6 standalone tests; shorts are `shorts` episodes with `parent_episode_id`.
-- **Metrics:** manual, 48 h / 7 d / 28 d; business outcomes (inquiries, attributed leads via cta_code) kept separate.
+## Course (60:00)
+M0 Cold open 1:30 · M1 Journey 5:30 · M2 Find a problem 6:00 · M3 Validate (what I skipped) 6:30 · M4 Scope the MVP 7:00 · M5 Build with Claude 10:00 · M6 Ship 7:00 · M7 Organic distribution 6:00 · M8 Agriloop debrief, decision, TradeNotes 7:00 · M9 Next steps 3:30 = 3600 s.
+M1 opens on the pigs (C-008). M8 is a LIVE decision (30 Nov), never "I moved on". Dossier timecodes for shorts (e.g. "52 tables, 0 orders" M0; "the 0:02 problem" M7; "RLS test caught a leak" M5) feed the repurposing playbook once an edit exists.
 
-## Outstanding questions (content)
-- **Q1 (still open)** `founder-story-dossier/` not found (timeline, claims register, course blueprint, S01-S46 shot list, funnel, knowledge gaps, founder answers). Course plan and templates were built without it and must be reconciled when it arrives.
-- **Q5 (still open)** exact trading risk disclosure wording.
-- **Q4 (still open)** may Agriloop-brand briefs (85 found, brief says 84) be used for Andrew Builds content?
-- Q-C1 Which customer-service / corporate employers, dates, and online ventures may be named? (needed for course 2.1-2.3, P3)
-- Q-C2 Agriloop real beta numbers (listings, farmers, buyers, transactions) with sources, or confirm "very little traction" is the only public statement.
-- Q-C3 Course host: YouTube (free) or a course platform? Free or paid? (no funnel was found)
-- Q-C4 TradeNotes repo name and first-commit date; is it attached to any session?
-- Q-C5 Consent: any people (family, farmers, YardScale clients/team) Andrew wants to show? Written consent needed.
-- Q-C6 Is episode-001/002 (Outreach Desk-focused) still wanted, or replaced by the Bootstrapper Experiment arcs A/B?
-- Q-C7 Approve proposed schema additions (metrics gap columns, asset kinds) as a later migration?
+## Evidence and claim rules
+FACT lines cite only CONFIRMED claims in `CLAIMS_REGISTER.md`; PARTIAL/PLANNED/UNKNOWN only in REFLECTION/OPINION/HYPOTHESIS/QUESTION lines. Prohibited statements P-1..P-11 never appear. Founder-confirmed facts use source kind `founder_answer`. Banned phrases, trading disclaimer, consent, hide list, partner never mentioned, nothing published without Andrew.
+
+## Production workflow and gates
+IDEA >G-IDEA> evidence > plan > script >G-SCRIPT> shot list > recording >G-RECORD> edit >G-EDIT> QA >G-QA> >G-PUBLISH> Andrew publishes > metrics > review. Approval wording: "Approved G-<GATE> <code>". Detail: CONTENT_STRATEGY section 6.
+
+## Repurposing and metrics
+>= 3 standalone shorts per episode only where material passes 6 tests; metrics manual at 48 h / 7 d / 28 d; business outcomes kept separate. See playbooks.
+
+## Answered by the dossier (no longer open)
+Q1 dossier location. Q-C4 TradeNotes repo = `anjuneedham/TradeNotes`, first commit 8 Nov 2026 (C-021). Agriloop real numbers = C-011/C-012 (founder-copied; refresh). Q-C6 episodes 001/002 are Outreach Desk-focused (dossier Q-B2 still open on how they relate).
+
+## Outstanding questions (founder), highest value first
+- **Q-N1** This repo is public: make it private, or name a private repo for the context pack? (blocks storing the pack)
+- **Q5 / dossier Q-H3** exact trading disclaimer wording.
+- **Q-A2** Did you speak to any farmers/buyers before building Agriloop, how many, what did they say? (decides whether M3 is "what I skipped")
+- **Q-A3 / Q-A4** specific sales story; first paying customer in your own business. (M1 cannot be scripted without them)
+- **Q-A5** which Aug-Sep sites were paid client work (C-006).
+- **Q-C2** may the partnership be mentioned at all? Currently NO (P-6). Q-C3/Q-C4 what happens to existing users and Agriloop's future.
+- **Q-D1 / Q-D2** exact split of work between you and Claude Code; do you build on the tablet or only record?
+- **Q-E1-E3** trading history and focus; has TradeNotes changed since 8 Nov (deploy fix, domain)?
+- **Q-B1** brand architecture (YardScale / Andrew Builds / Agriloop / TradeNotes / course); Q-B2 how the Bootstrapper Experiment relates to the course.
+- **Q-F1 / Q-F2** do you take MVP clients now; delivery model, price, timeline (none invented; `[DECIDE]` placeholders).
+- **Q-H1 / Q-H2** which names, logos, client sites and dashboards may be shown.
+- Course hosting (free YouTube or platform); first-user permission to tell her story (Q-C8); approve later schema additions (metrics gap columns, asset kinds).
+- Housekeeping from dossier: upgrade TradeNotes' Next.js; rotate credentials pasted into chats earlier; confirm old Agriloop demo accounts/passwords are deleted; update stale docs before showing them.
 
 ## Current approval status
-Content strategy, course plan and templates: **NOT APPROVED** (gate CS-0). Platform P0 approval still pending as above.
+Content strategy, course plan v2, claims register and templates: **NOT APPROVED** (gate CS-0). Platform P0 approval and G0/D1/D7/D8-D14 still pending.
 
 ## Exact next step for CONTENT-BUILD (only after CS-0 approval)
-1. Ask Andrew Q-C2 and Q-C4; turn answers into claims (C-###) with sources in a working claims register `production/claims/CLAIMS_REGISTER.md` (file-based until P2 UI exists).
-2. Run `production/tools/suggest_content.py` / review git logs to list real moments for Arc A (Agriloop, last 60 days); propose 3 episode ideas to Andrew for **G-IDEA**. No calendar dates until approved.
-3. For the approved idea: `python3 production/tools/new_episode.py <N> "<title>"`, fill REPEATABLE_EPISODE_TEMPLATE, then a draft script in REPEATABLE_SCRIPT_TEMPLATE format, then stop at **G-SCRIPT**.
-Suggested reply: "Approved CS-0: content strategy, course plan and templates accepted." (plus answers to Q1, Q5, Q-C1..C7).
+1. Get Q-N1 answered; re-attach the context pack to the session.
+2. Turn `CLAIMS_REGISTER.md` into the working register (re-verify C-010, C-011, C-021..C-025 against live state on the day; ask Andrew for the UNKNOWN items). Do not import to the DB (needs G1/G2).
+3. Propose 3 episode ideas to Andrew for **G-IDEA** from real moments (Arc A: Agriloop to 30 Nov; Arc B: TradeNotes deploy fix; dossier hook candidates in file 07 section 6). No calendar dates.
+4. For the approved idea: `python3 production/tools/new_episode.py <N> "<title>"`, fill the episode template, draft a tagged script, stop at **G-SCRIPT**. Record S45 (decision) only after Andrew decides.
+Suggested reply: "Approved CS-0: content strategy, course plan v2, claims register and templates accepted." plus answers to the questions above.

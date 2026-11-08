@@ -1,7 +1,7 @@
 # Shot List Template
 
 Supersedes `production/templates/SHOT_LIST_TEMPLATE.md` for new episodes (that file stays for episodes 001-002). Maps to `shots` (`code`, `description`, `location`, `device`, `status`, `checklist`).
-The dossier's S01-S46 list was not found; when supplied, import it using these columns.
+The dossier's S01-S46 list (course shots) is summarised in `COURSE_60_MINUTE_PLAN.md` Appendix A with READY / ASK / TO CREATE status; import it into these columns at P2, keeping its IDs. Dossier hide list applies: Supabase API/keys pages, `.env`/Vercel env screens, bank/HandyPay balances and payer emails, real user details, partner names/terms, commenter handles, the Samsung status bar notifications. Dossier tablet settings: screen recorder with no sound, highest quality, Show taps and touches, rotation locked, edge panels off.
 
 ## Columns
 | Field | Content |

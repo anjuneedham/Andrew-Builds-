@@ -7,7 +7,7 @@ Maps to `assets` (`episode_id`, `kind`, `path`, `hide_list_checked_at`, `hide_li
 <EPISODE>_<TYPE>_<SHOT-or-PART>_<DESC>_v<NN>.<ext>
 E004_SCR_S03_claim-gate_v01.mp4
 E004_VO_P02_context_v02.wav
-C3.3_SCR_S01_build-session_v01.mp4     (course lesson)
+CRS_M5_S19_claude-session_20261110_v01.mp4   (course shot; dossier convention CRS_<module>_<shot>_<slug>_<YYYYMMDD>_v<nn>)
 E004_SHT_SH02_tiktok_v01.mp4          (short export)
 ```
 - EPISODE: `E###` (documentary), `C<section>.<lesson>` (course), `SH-YYYYMMDD-N` (standalone daily short)

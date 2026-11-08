@@ -1,6 +1,6 @@
 # Andrew Builds: Content Strategy
 
-Status: **PROPOSED, awaiting Andrew's approval (gate CS-0).** Last updated 2026-11-08.
+Status: **PROPOSED, awaiting Andrew's approval (gate CS-0).** Last updated 2026-11-08 (reconciled with the founder dossier).
 Executor: Claude Sonnet (CONTENT-BUILD). This file is the rulebook; the templates beside it are the forms.
 
 ## 1. Positioning
@@ -48,8 +48,8 @@ Organic only. No paid promotion is planned.
 9. Length guide: 8-15 min. Length follows material, not a target.
 
 **Current arcs (real, open):**
-- Arc A, Agriloop: beta to the 30 November decision (continue / pivot / pause / stop). The decision episode is recorded only after Andrew decides; the outcome is never scripted in advance.
-- Arc B, TradeNotes: from first commit to a usable journal. No trading performance.
+- Arc A, Agriloop: beta to the 30 November decision. Andrew has NOT decided (he feels demotivated and may try to make it work); never say he "moved on". Dossier evidence: about 10 user rows, about 2 listings, 0 orders (8 Nov), about 2,900 video views to 1 sign-up (C-011, C-012). The decision episode is recorded only after Andrew decides; the outcome is never scripted in advance.
+- Arc B, TradeNotes: started 8 Nov 2026, not live, deploys blocked, backtesting not started (C-021..C-025). Andrew's own trading results are not where he wants them (C-003). No trading performance, no "journaling changed my results".
 - Arc C, the system itself: Outreach Desk + content platform as the tools running the business.
 
 No episode calendar is set in this document. Episodes are scheduled in the platform (P1 calendar, not yet built) only from logged moments.
@@ -102,5 +102,5 @@ See REPURPOSING_PLAYBOOK.md (>= 3 standalone shorts per episode when the materia
 | `production/episode-001`, `episode-002` | Outreach Desk-focused drafts with `[FILL]` placeholders. Treat as Arc C material; re-tag into the new script format before use |
 | `production/DAILY_SHORTS_SYSTEM.md` | Kept as the daily short routine; the REPURPOSING_PLAYBOOK governs shorts cut from episodes |
 | Platform P0 schema | Workflow states and claim gate map directly (section 6) |
-| `founder-story-dossier/` (timeline, claims register, course blueprint, S01-S46 shot list, funnel, gaps, founder answers) | **NOT FOUND in any attached repo.** Not reused. See outstanding questions |
-| Agriloop 84 (85 found) video briefs | Agriloop-brand; reference only, pending Q4 |
+| Founder dossier (`ANDREW_BUILDS_CONTEXT_PACK.md`: timeline, claims, course blueprint, S01-S46, funnel, gaps, founder answers) | **FOUND 2026-11-08 (supplied by Andrew).** `COURSE_60_MINUTE_PLAN.md` v2 and `CLAIMS_REGISTER.md` derive from it. The pack stays OUTSIDE this public repo |
+| Agriloop video briefs | 85 files in `agriloopmain/video-production/briefs` (dossier says 84). Agriloop-brand; reference only, pending Q4 |
