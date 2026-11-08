@@ -40,6 +40,6 @@ All decisions below are **recommendations pending Andrew's approval** unless mar
 
 ## New questions for Andrew
 - **Q7** Architecture blocks a `FACT` line that cites a `PARTIALLY_CONFIRMED` claim. The brief says partial claims are shown with their limitations. Keep the stricter rule (partial claims only usable in non-FACT lines), or allow a FACT line to cite a partial claim when its limitation is displayed with it? P0 implements the stricter rule.
-- **Q8** The brief's workflow has QA and APPROVAL stages between EDITING and PUBLISHING; episode statuses are `EDITING -> READY_TO_PUBLISH -> PUBLISHED`. Add an explicit `QA` status in P1?
+- **Q8 RESOLVED (Andrew, 2026-11-08): add a `QA` episode status.** Done in migration `003_episode_qa_status.sql`: `EDITING -> QA -> READY_TO_PUBLISH`. APPROVAL stays the post-level `APPROVED` state (P5).
 - **Q9** Raise ALL existing Outreach Desk buttons to 48px (affects the sales screens), or only new Content screens?
 - **Q10** The plan says G0 wording must be given verbatim. Please confirm G0/D1/D7 (and D8-D14) so this is recorded as approved.

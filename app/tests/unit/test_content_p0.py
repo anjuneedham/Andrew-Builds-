@@ -45,7 +45,7 @@ class MigrationTest(unittest.TestCase):
 
     def test_applies_and_is_recorded(self):
         names = [r["name"] for r in self.conn.execute("SELECT name FROM schema_migrations ORDER BY name")]
-        self.assertEqual(names, ["001_schema.sql", "002_content.sql"])
+        self.assertEqual(names, ["001_schema.sql", "002_content.sql", "003_episode_qa_status.sql"])
         self.assertEqual(db.migrate(self.conn), [], "the runner must not re-apply a recorded migration")
 
     def test_sql_is_idempotent_when_run_again(self):
@@ -441,6 +441,15 @@ class RuleTests:
         self.set_status(s, "READY_TO_RECORD")
         self.q("UPDATE episodes SET status = 'READY_TO_RECORD' WHERE id = ?", (ep,))
         self.assertEqual(self.status_of("episodes", ep), "READY_TO_RECORD")
+
+    def test_qa_status_exists_between_editing_and_ready_to_publish(self):
+        ep = self.episode()
+        order = meta.ENUMS[("episodes", "status")]
+        self.assertEqual(order[order.index("EDITING") + 1:order.index("EDITING") + 3], ("QA", "READY_TO_PUBLISH"))
+        for state in ("EDITING", "QA", "READY_TO_PUBLISH"):
+            self.q("UPDATE episodes SET status = ? WHERE id = ?", (state, ep))
+            self.assertEqual(self.status_of("episodes", ep), state)
+        self.fails(CheckViolation, "UPDATE episodes SET status = 'APPROVAL' WHERE id = ?", (ep,), rule=False)
 
     def test_episode_constraints(self):
         sid = self.one("SELECT id FROM series WHERE slug = 'shorts'")

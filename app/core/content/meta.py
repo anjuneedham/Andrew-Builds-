@@ -13,7 +13,7 @@ PLATFORMS = ("youtube", "instagram", "tiktok")
 
 # (table, column) -> allowed values, exactly as the CHECK constraints list them.
 ENUMS = {
-    ("episodes", "status"): ("IDEA", "SCRIPTING", "READY_TO_RECORD", "RECORDED", "EDITING", "READY_TO_PUBLISH", "PUBLISHED", "ARCHIVED"),
+    ("episodes", "status"): ("IDEA", "SCRIPTING", "READY_TO_RECORD", "RECORDED", "EDITING", "QA", "READY_TO_PUBLISH", "PUBLISHED", "ARCHIVED"),
     ("ideas", "status"): ("BACKLOG", "SCHEDULED", "DROPPED"),
     ("scripts", "status"): ("DRAFT", "IN_REVIEW", "READY_TO_RECORD", "LOCKED"),
     ("script_lines", "kind"): ("FACT", "OPINION", "REFLECTION", "QUESTION", "HYPOTHESIS", "DIRECTION", "CTA", "DISCLAIMER"),

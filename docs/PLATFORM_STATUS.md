@@ -14,7 +14,7 @@ Last updated: 2026-11-08
 | Check | Result |
 |---|---|
 | Existing suite before changes (baseline) | PASSED 44/44 |
-| Full suite after P0 (44 existing + 109 new) | PASSED 153/153 |
+| Full suite after P0 + QA status (44 existing + 111 new) | PASSED 155/155 (re-run 2026-11-08 after adding migration 003) |
 | Migration `002_content.sql` applies, re-runs twice with no change, runner skips it once recorded | PASSED |
 | Migration leaves every existing table, column, trigger unchanged (001-only vs 001+002 snapshot) | PASSED |
 | Migration run by a NON-superuser role (as a real Neon role would) | PASSED |
@@ -32,7 +32,7 @@ Last updated: 2026-11-08
 | `production/tools/qa.py project` secret scan | PASSED |
 
 ## Built in P0
-Migration `002_content.sql` (19 tables, constraints, triggers, RLS, `content_app` role, seed: 4 series + 1 course plan row); `core/content/` (access, meta, status);
+Migrations `002_content.sql` and `003_episode_qa_status.sql` (adds episode status `QA`) (19 tables, constraints, triggers, RLS, `content_app` role, seed: 4 series + 1 course plan row); `core/content/` (access, meta, status);
 `dashboard/content_api.py` (`GET /api/content/meta`, `GET /api/content/health`); Content page and nav entry; 48px touch targets for nav.
 **No editing screens exist.** The Content page is a read-only foundation/status view and says so on screen.
 
