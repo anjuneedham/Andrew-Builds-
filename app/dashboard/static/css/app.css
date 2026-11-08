@@ -226,3 +226,10 @@ input[type=range]{padding:0;min-height:28px}
 .nav a{align-items:center}
 @media (max-width:860px){.tabbar a{flex:1 1 0;min-width:64px;align-content:center}}
 .tile .label{overflow-wrap:anywhere;letter-spacing:.08em}
+/* ---- tablet touch targets: every control >= 48px (Q9 approved) ---- */
+.btn,.btn.small{min-height:48px}
+.btn.small{padding:8px 14px}
+input,select{min-height:48px}
+.chips button,.tabs button{min-height:48px}
+.check input{min-height:0}
+input[type=range]{min-height:48px}

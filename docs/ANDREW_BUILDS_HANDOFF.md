@@ -46,7 +46,7 @@ Owner login + TOTP + sessions + rate limit (`core/auth/owner_login.py`), `audit_
 Neon/Vercel/production; Postgres other than 16.15; real Tab S9 FE+ and non-Chromium browsers; old sales `journey.js`; service-worker upgrade and offline; concurrent cold-start migration with 002. Everything in P1-P10 is unbuilt.
 
 ## Known defects / limitations
-See `PLATFORM_STATUS.md` "Known issues" (8 items). Key ones: PG < 16 connecting role inherits `content_app`; existing Outreach Desk buttons are 40px; LOCKED scripts citing a later-downgraded claim need a P2 warning; deferrable unique errors surface at COMMIT; imported claim codes must advance `claims_code_seq`.
+See `PLATFORM_STATUS.md` "Known issues" (8 items). Key ones: PG < 16 connecting role inherits `content_app`; (Q9 done: all controls now 48px; drawer/data-heavy states unmeasured); LOCKED scripts citing a later-downgraded claim need a P2 warning; deferrable unique errors surface at COMMIT; imported claim codes must advance `claims_code_seq`.
 
 ## Security status
 One owner login (scrypt + TOTP) unchanged; all `/api/content/*` routes are 401 without a valid session (tested in unit + live curl); RLS enabled+forced everywhere with a single `content_app` policy; `content_app` has no access to credentials/sessions/personal contact fields; no secrets in source (grep + qa.py scan clean); no innerHTML in new JS; CSP unchanged (no inline script); hide-list terms are never returned by any route.

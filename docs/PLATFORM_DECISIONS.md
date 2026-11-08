@@ -39,7 +39,8 @@ All decisions below are **recommendations pending Andrew's approval** unless mar
 | D14 | New tables use native `TIMESTAMPTZ`/`DATE`; legacy tables keep TEXT ISO timestamps | Real types make CHECKs (published >= approved, Monday weeks) possible. API serialises with `default=str` |
 
 ## New questions for Andrew
-- **Q7** Architecture blocks a `FACT` line that cites a `PARTIALLY_CONFIRMED` claim. The brief says partial claims are shown with their limitations. Keep the stricter rule (partial claims only usable in non-FACT lines), or allow a FACT line to cite a partial claim when its limitation is displayed with it? P0 implements the stricter rule.
+- **Q7 RESOLVED (Andrew): Option A, strict.** A FACT line cannot cite a PARTIALLY_CONFIRMED claim; such claims are usable only in non-FACT lines or after rewriting to a narrower CONFIRMED fact. (Already implemented.)
+- ~~Q7 original text:~~ Architecture blocks a `FACT` line that cites a `PARTIALLY_CONFIRMED` claim. The brief says partial claims are shown with their limitations. Keep the stricter rule (partial claims only usable in non-FACT lines), or allow a FACT line to cite a partial claim when its limitation is displayed with it? P0 implements the stricter rule.
 - **Q8 RESOLVED (Andrew, 2026-11-08): add a `QA` episode status.** Done in migration `003_episode_qa_status.sql`: `EDITING -> QA -> READY_TO_PUBLISH`. APPROVAL stays the post-level `APPROVED` state (P5).
-- **Q9** Raise ALL existing Outreach Desk buttons to 48px (affects the sales screens), or only new Content screens?
+- **Q9 RESOLVED (Andrew): raise ALL existing buttons.** Done: every button, input, select, chip and tab is >= 48px.
 - **Q10** The plan says G0 wording must be given verbatim. Please confirm G0/D1/D7 (and D8-D14) so this is recorded as approved.

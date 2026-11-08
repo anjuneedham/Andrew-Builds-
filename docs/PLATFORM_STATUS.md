@@ -48,7 +48,7 @@ Migrations `002_content.sql` and `003_episode_qa_status.sql` (adds episode statu
 ## Known issues / limitations
 1. Docs mismatch: `TECHNICAL_ARCHITECTURE.md` mentions `007_sales_os.sql`; the repo has only `001_schema.sql`.
 2. `founder-story-dossier/` still not found anywhere (blocks P10 dossier import only). Brief says 84 Agriloop briefs, repo has 85 (unconfirmed). `anjuneedham/agriloop` not inspected.
-3. Existing Outreach Desk buttons are 40px (small 32px), below the 48px tablet target. Only the new Content controls and the nav were raised. Restyling everything is a decision for Andrew (Q9).
+3. RESOLVED (Q9): all Outreach Desk controls raised to 48px. Measured in Chromium on Today/Pipeline/Playbooks/Insights/Content at 1280x800 and 800x1280: no undersized controls, no horizontal scroll. Only default/empty states were measured; screens opened from drawers or with data-heavy rows were NOT measured.
 4. App is still branded "Outreach Desk"; renaming was out of P0 scope.
 5. A LOCKED script that cites a claim later downgraded is not auto-changed (it is history). The P2 checker must flag it.
 6. Deferrable uniqueness (script line positions, course module positions) is checked at COMMIT, so a duplicate surfaces when the request's transaction ends. P1/P2 API code must map that error.
