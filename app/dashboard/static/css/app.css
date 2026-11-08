@@ -219,3 +219,10 @@ input[type=range]{padding:0;min-height:28px}
 }
 .sform .err:empty{display:none}
 .compact table{min-width:0}.compact th,.compact td{padding:8px 10px}
+
+/* ---- content platform: tablet-first controls (>= 48px touch targets) ---- */
+.cbtn{min-height:48px;padding:12px 20px;font-size:15px}
+.nav a,.tabbar a{min-height:48px}
+.nav a{align-items:center}
+@media (max-width:860px){.tabbar a{flex:1 1 0;min-width:64px;align-content:center}}
+.tile .label{overflow-wrap:anywhere;letter-spacing:.08em}

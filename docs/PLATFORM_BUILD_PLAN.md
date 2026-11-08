@@ -1,6 +1,6 @@
 # Platform Build Plan
 
-Status: **NOT STARTED. Awaiting approval to begin PLATFORM-BUILD.** See `PLATFORM_ARCHITECTURE.md` for the model.
+Status: **P0 built and tested (2026-11-08), awaiting Andrew's approval at the P0 gate. P1-P10 not started.** Results: `PLATFORM_STATUS.md`. See `PLATFORM_ARCHITECTURE.md` for the model.
 
 ## Testing standard (every phase)
 - Unit tests in `app/tests/unit/test_content_*.py` against a **throwaway** Postgres (`TEST_DATABASE_URL`), through the real HTTP handler + auth.
@@ -18,7 +18,7 @@ Status: **NOT STARTED. Awaiting approval to begin PLATFORM-BUILD.** See `PLATFOR
 
 ## Phases
 
-### P0 Foundation (depends on G0)
+### P0 Foundation (depends on G0) - BUILT, AWAITING APPROVAL
 Scope: `002_content.sql` (all tables, CHECKs, triggers, RLS, `content_app` role), `core/content/` skeleton, `content_api.py` dispatcher, nav entry.
 Acceptance: migration applies twice idempotently on a throwaway DB; RLS denies a role other than `content_app`; all new routes 401 without auth; existing tests pass.
 

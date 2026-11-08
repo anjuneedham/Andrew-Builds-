@@ -8,7 +8,7 @@ from pathlib import Path
 
 from core import db
 from core.auth import owner_login as ol
-from dashboard import sales_api
+from dashboard import content_api, sales_api
 
 PAGE = (Path(__file__).parent / "pages" / "index.html").read_text()
 STATIC = Path(__file__).parent / "static"
@@ -17,7 +17,7 @@ STATIC_MIME = {".js": "text/javascript", ".css": "text/css", ".woff2": "font/wof
 STATIC_ROOT = {"/manifest.webmanifest", "/sw.js", "/icon-192.png", "/icon-512.png"}
 STATIC_DIRS = ("/css/", "/js/", "/fonts/")
 MAX_BODY = 4096                       # auth routes
-READ_CAP = sales_api.SALES_MAX_BODY + 1  # most we ever read; each route enforces its own limit
+READ_CAP = max(sales_api.SALES_MAX_BODY, content_api.CONTENT_MAX_BODY) + 1  # most we ever read; each route enforces its own limit
 HEADERS = {
     "Cache-Control": "no-store",
     "X-Content-Type-Options": "nosniff",
@@ -102,6 +102,8 @@ def handle(method, path, authz, conn, body: bytes = b""):
         return _json(401, {"error": "unauthorized"})
     if path.startswith("/api/sales/"):
         return sales_api.handle(method, path, conn, body)
+    if path.startswith("/api/content/"):
+        return content_api.handle(method, path, conn, body)
     if method == "POST" and path == "/api/auth/logout":
         ol.logout(conn, token)
         return _json(200, {"ok": True})

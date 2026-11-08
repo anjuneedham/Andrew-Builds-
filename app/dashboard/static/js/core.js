@@ -23,6 +23,7 @@
     pipeline: "M3 5h4v14H3zM10 5h4v9h-4zM17 5h4v5h-4z",
     book: "M5 4h10a3 3 0 013 3v13H8a3 3 0 01-3-3zM5 17a3 3 0 013-3h10",
     chart: "M4 20V4M4 20h16M8 16v-5M13 16V8M18 16v-3",
+    content: "M4 4h16v12H4zM8 20h8M12 16v4M8 9l3 3 5-5",
   };
   Z.icon = name => {
     const s = document.createElementNS(NS, "svg");

@@ -1,6 +1,6 @@
 (function () {
   const { $, el, add, text, icon } = Z;
-  const NAV = [["today", "Today"], ["pipeline", "Pipeline"], ["playbooks", "Playbooks"], ["insights", "Insights"]];
+  const NAV = [["today", "Today"], ["pipeline", "Pipeline"], ["playbooks", "Playbooks"], ["insights", "Insights"], ["content", "Content"]];
   const AUTH = ["msgbox", "setup1", "setup2", "setup3", "login"];
   let timer = null, seq = 0, current = "today";
 
