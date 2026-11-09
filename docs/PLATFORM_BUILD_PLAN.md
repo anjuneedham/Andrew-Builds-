@@ -22,7 +22,8 @@ Status: **P0 built and tested (2026-11-08), awaiting Andrew's approval at the P0
 Scope: `002_content.sql` (all tables, CHECKs, triggers, RLS, `content_app` role), `core/content/` skeleton, `content_api.py` dispatcher, nav entry.
 Acceptance: migration applies twice idempotently on a throwaway DB; RLS denies a role other than `content_app`; all new routes 401 without auth; existing tests pass.
 
-### P1 Content calendar + idea backlog
+### P1 Content calendar + idea backlog  (STARTED 2026-11-09; built in five ~20% slices, update after each)
+Slices: **1 Episodes + series API and status state machine (DONE, 15 tests)** · 2 Ideas API + promote idea to episode · 3 Calendar API (month/week, America/Jamaica, reschedule) · 4 UI: episode list/detail + idea backlog (tablet, 48px) · 5 UI: calendar + Playwright 1280x800 / 800x1280 + acceptance check.
 Scope: series, episodes, ideas; month/week calendar; promote idea → episode.
 Acceptance: create/edit/reschedule on tablet; calendar uses `America/Jamaica`; status values limited to the enum; audit on delete.
 
