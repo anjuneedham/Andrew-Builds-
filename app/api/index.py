@@ -25,6 +25,11 @@ def has_persistent_db() -> bool:
     return _db_url().startswith(("postgres://", "postgresql://"))
 
 
+def _diag(stage: str, exc: Exception) -> None:
+    """Log ONLY the exception class and SQLSTATE (no message: it can contain hosts, users or SQL) so a 503 can be diagnosed in Vercel logs."""
+    print(f"db-diag stage={stage} error={type(exc).__name__} sqlstate={getattr(exc, 'sqlstate', None)}", flush=True)
+
+
 def _api(method, path, authz, body=b""):
     global _migrated
     unavailable = (503, "application/json", json.dumps({"error": "database unavailable"}).encode())
@@ -32,14 +37,16 @@ def _api(method, path, authz, body=b""):
         return unavailable
     try:
         conn = db.connect(_db_url())
-    except Exception:
+    except Exception as e:
+        _diag("connect", e)
         return unavailable
     try:
         if not _migrated:
             db.migrate(conn)
             _migrated = True
         return dash.handle(method, path, authz, conn, body)
-    except Exception:
+    except Exception as e:
+        _diag("request", e)
         return unavailable  # never leak driver errors (may contain hosts/users)
     finally:
         conn.close()
