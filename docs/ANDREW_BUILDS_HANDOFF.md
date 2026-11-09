@@ -20,6 +20,11 @@ Approval status: G0 assumed from the kickoff brief (verbatim wording not given; 
 | Course | Separate packages, one at a time. E003 reuses S23/S25/S28 for M5/M6. Next package after E003 is Andrew's choice |
 | Supabase rollback | **NOT done.** The destructive SQL needed an unanswered confirmation. `tradenotes` schema (10 empty tables, 5 functions) + migration row `20261108173630` still believed present. Awaiting "retry" and the database decision |
 
+### PUBLISH BLOCKER + holds (2026-11-09)
+- **E003 cannot be published until the TradeNotes affiliate program (30% first month, 10% while subscribed) is built and working** (C-052 PLANNED, C-053 UNKNOWN, script line L046). Build is a separate, unstarted task.
+- **Supabase rollback on HOLD** at Andrew's instruction ("wait for supabase"). Not run.
+- Affiliate research for third-party tools: no public commission programme found for Claude (individuals), Supabase, HandyPay, Neon; Vercel has affiliate terms (rates not found). C-046 remains UNKNOWN.
+
 ### Known gaps
 `[RECORD]` L009 (why TradeNotes), L013 (what he decided/checked 8 Nov), L036-L037 (ending, after attempt). C-046 which affiliate programmes are real. Database choice. Q-D1 split of work. Hide-list findings from Gate 1 (plans.ts links, session URLs, Supabase dashboard, public SALES_PLAYBOOK copy P-10) still apply.
 

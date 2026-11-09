@@ -73,6 +73,7 @@ Voice: Andrew, voiceover over tablet screen recordings. `[RECORD]` = only in you
 | L040 | HYPOTHESIS | I'm also going to try Neon for testing a different database. Which one TradeNotes runs on isn't decided. | C-050 [PLANNED] | S14 |
 | L041 | DISCLAIMER | [AFFILIATE DISCLOSURE: ONLY if a real affiliate relationship exists for a named tool. Draft: "Some links in the description are affiliate links. If you sign up through them I may earn a commission, at no extra cost to you."] | C-046 [UNKNOWN: slot stays empty until confirmed] | S14 |
 | L042 | OPINION | I work in sales, so here's my honest pitch: use a tool if it solves the problem you have this week, and check the pricing yourself. | - | S14 |
+| L046 | FACT | **[PUBLISH BLOCKER: say this only once the program is live]** TradeNotes has an affiliate program: affiliates earn 30% of the referred person's first month and 10% for as long as that person stays subscribed. | C-053 [UNKNOWN until built] | S14 |
 
 ## 8. Close (10:15-10:45)
 | ID | Kind | Text | Claims | Shot |
@@ -85,7 +86,7 @@ Voice: Andrew, voiceover over tablet screen recordings. `[RECORD]` = only in you
 See `claims-register.md`.
 
 ## Open items
-UNKNOWN: C-046 (affiliate programmes, per tool), C-051 (fix outcome). `[RECORD]`: L009, L013, L036-L037. Decisions: database choice (L039-L040), Supabase rollback pending.
+UNKNOWN: C-046 (affiliate programmes, per tool), C-051 (fix outcome), **C-053 (TradeNotes affiliate program must be built before publishing)**. `[RECORD]`: L009, L013, L036-L037. Decisions: database choice (L039-L040), Supabase rollback pending.
 
 ## Checks (manual; app-level checker not built)
 Banned phrases: 0 · Hide list: scripted shots avoid plans.ts, Supabase dashboard, session URLs · Disclaimer: present (L005, L044, description) · FACT lines cite CONFIRMED only: **yes**, except L036 (UNKNOWN by design; blocks the DB gate until the ending is added at G-RECORD) · Digits in non-FACT lines: none · Planned items spoken as plans: L033, L040 · Affiliate wording: none spoken as fact (P-12).

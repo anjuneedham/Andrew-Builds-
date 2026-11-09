@@ -35,6 +35,12 @@ TradeNotes repo git log (6 commits, authors, commit 93ed914); `docs/TEST_RESULTS
 ## Scope note: the 60-minute course
 The course is separate packages, one at a time. E003 is not the course. Reusable parts: S23 (isolation test), S25 (unit tests), S28 (deploy fix) and the "tests pass locally vs shipped" lesson for M5/M6. Next package after E003 is Andrew's choice (suggestion: course M5, or Idea 2/3).
 
+## PUBLISH BLOCKER (Andrew, 2026-11-09)
+The video says TradeNotes has an affiliate program (L046): 30% of the referred person's first month, then 10% for as long as they stay subscribed. **The program must be built and working before this video is published** (claim C-053). Until then L046 stays out of any recording that would be published, or the video waits. Program build is a separate task (needs repo write access, terms, tracking, payout method, disclosure and "no profit promises" rules for affiliates).
+
+## Affiliate research, third-party tools (web search, 2026-11-09; NOT confirmation that Andrew is enrolled)
+Vercel: has Affiliate Marketing Terms (rates not found). Anthropic/Claude: enterprise referral partner programme only; no public individual commission found. Supabase: no commission programme found (a creator programme gives credits). HandyPay: none found. Neon: no commission programme found (partner/open-source/creator programmes). So C-046 stays UNKNOWN and no affiliate wording is allowed for these tools.
+
 ## Open items before G-SCRIPT is approved
 1. `[RECORD]` L010 why TradeNotes; L014 what you personally decided or checked on 8 Nov (your words, only if true).
 2. Affiliate: which programmes are real (C-046)? Until answered the affiliate slot stays a placeholder.

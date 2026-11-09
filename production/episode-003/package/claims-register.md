@@ -25,6 +25,8 @@ Source of truth for statements: `docs/CLAIMS_REGISTER.md`. This file maps each E
 | C-049 | Andrew plans to upgrade Next.js on camera and redeploy TradeNotes. | PLANNED | founder_answer 9 Nov | Outcome unknown | L033 |
 | C-050 | Andrew plans to try Neon for testing a different database. | PLANNED | founder_answer 9 Nov | Database choice undecided | L040 |
 | C-051 | The outcome of the on-camera Next.js upgrade and redeploy. | **UNKNOWN** | recorded evidence only | Ending lines added at G-RECORD | L036 |
+| C-052 | TradeNotes will pay affiliates 30% of the referred person's first month and 10% for as long as that person stays subscribed. | PLANNED | founder_answer 9 Nov | Terms undecided; not built | L046 (conditional) |
+| C-053 | TradeNotes has a live affiliate program with those terms. | **UNKNOWN** | none | **PUBLISH BLOCKER**: must be built and working before the video is published | L046 |
 
 ## Non-factual lines (no claim needed)
 OPINION: L004, L012, L020, L021, L026, L031, L032, L039, L042. REFLECTION (Andrew's own, approved before recording): L009, L013, L025, L037. HYPOTHESIS: L008, L033, L034, L040. QUESTION: L043. DISCLAIMER: L005, L041, L044. CTA: L045. DIRECTION: L017, L019, L022, L027, L035.

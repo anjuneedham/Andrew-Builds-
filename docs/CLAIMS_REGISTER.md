@@ -1,7 +1,7 @@
 # Claims Register (seed, file-based until platform P2)
 
 Seeded 2026-11-08 from the dossier production source pack (`10_production_source_pack.md` §5 and §2) and the founder answers (`11_founder_answers_update.md`). Statuses use the platform vocabulary. "CONFIRMED-BY-FOUNDER" in the dossier = `CONFIRMED` with source kind `founder_answer`.
-Rules: only CONFIRMED claims may back a FACT line (Q7 strict). Wording is fixed: changing a statement voids its verification. Codes match the platform's `C-###` format; when imported, advance `claims_code_seq` past C-051.
+Rules: only CONFIRMED claims may back a FACT line (Q7 strict). Wording is fixed: changing a statement voids its verification. Codes match the platform's `C-###` format; when imported, advance `claims_code_seq` past C-053.
 **Repo is public: do not add partner names/terms, user names, keys or links here.**
 
 | Code | Statement (exact wording allowed in FACT lines) | Project | Status | Source kind: reference | Limitations / re-check |
@@ -57,6 +57,8 @@ Rules: only CONFIRMED claims may back a FACT line (Q7 strict). Wording is fixed:
 | C-049 | Andrew plans to upgrade Next.js on camera and redeploy TradeNotes. | tradenotes | PLANNED | founder_answer: 2026-11-09 approval | Outcome unknown |
 | C-050 | Andrew plans to try Neon for testing a different database. | tradenotes | PLANNED | founder_answer: 2026-11-09 | Which database TradeNotes runs on is undecided |
 | C-051 | The outcome of the on-camera Next.js upgrade and redeploy. | tradenotes | UNKNOWN | - | Created from the recording itself; script ending lines added at G-RECORD |
+| C-052 | TradeNotes will pay affiliates 30% of the referred person's first month and 10% for as long as that person stays subscribed. | tradenotes | PLANNED | founder_answer: 2026-11-09 | Interpretation to confirm (percent of what the subscriber pays; per referred person). Not built. Terms, tracking and payout method undecided |
+| C-053 | TradeNotes has a live affiliate program with those terms. | tradenotes | UNKNOWN | - | **PUBLISH BLOCKER for E003.** Becomes CONFIRMED only when the program exists and works (page, tracking, payout method, terms) |
 
 ## Prohibited statements (never claim; no platform status exists for "false")
 P-1 Agriloop is a commercial success or has revenue/orders beyond C-011. P-2 TradeNotes is live, launching, has users, revenue or working backtesting. P-3 Andrew is a profitable or successful trader; any trading performance. P-4 Andrew has paid-ads SaaS experience; the YardScale site line "runs the paid distribution" must not be repeated. P-5 Any client name, testimonial, price, guarantee or timeline. P-6 Any mention of the operating partner, her business, or terms. P-7 Any real user's name or message. P-8 "I moved on from Agriloop" (undecided until 30 Nov). P-9 Expertise in Postgres/RLS/DevOps ("learning, verifying with tests"). P-10 "Journaling changed my results" / "kept making the same mistakes until journaling" (contradicted by founder). P-11 Jamaica "has ~200,000 farmers" (unsourced). P-12 Any affiliate, sponsorship or partnership with Vercel, Anthropic/Claude, Supabase, Neon, HandyPay or a trading platform/broker unless C-046 is CONFIRMED for that exact party; any income, commission or earnings figure; any suggestion that using a tool or broker will make someone profitable.
