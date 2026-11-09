@@ -28,6 +28,9 @@ Approval status: G0 assumed from the kickoff brief (verbatim wording not given; 
 ### UPDATE 2026-11-09: TradeNotes moved to Neon + Better Auth (commits d1d8016, d52fa1e)
 No Supabase needed by the app. 6 production deploys now, all failed with VULNERABLE_NEXTJS_VERSION (Next.js still 15.5.4). Working title changed to drop the count ("Then every deploy failed"). Script v2 re-cites C-024/C-037/C-040, adds C-054. Priority per Andrew: finish script/visuals and post (Andrew posts; never me). Link-live path: Neon project + env vars + Next.js upgrade on camera (S11-S13). Record the failed-deploy screens BEFORE the fix.
 
+### Content platform go-live (Andrew 2026-11-09: "I need the link live", new separate Supabase project)
+Platform needs only `DATABASE_URL` (any postgres:// URL) + `OWNER_SETUP_TOKEN` (20+ chars, first setup only) on Vercel with Root Directory `app`; schema migrates on first start. Andrew chose a NEW Supabase project (not Agriloop's). Risks noted: (1) Supabase Data API exposes `public` tables over HTTP: turn it OFF for this project because legacy tables hold owner credentials/leads without RLS; (2) migration needs the connecting role to CREATE ROLE and GRANT (untested on Supabase; G1 item); (3) free Supabase projects pause after inactivity. NOT TESTED on Supabase/Vercel. Andrew creates the secrets himself; no secrets in chat or git. G1 target approval = Andrew's choice above (confirm).
+
 ### Known gaps
 `[RECORD]` L009 (why TradeNotes), L013 (what he decided/checked 8 Nov), L036-L037 (ending, after attempt). C-046 which affiliate programmes are real. Database choice. Q-D1 split of work. Hide-list findings from Gate 1 (plans.ts links, session URLs, Supabase dashboard, public SALES_PLAYBOOK copy P-10) still apply.
 
