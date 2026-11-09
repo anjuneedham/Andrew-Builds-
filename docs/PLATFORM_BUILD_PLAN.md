@@ -16,14 +16,25 @@ Status: **P0 built and tested (2026-11-08), awaiting Andrew's approval at the P0
 - **G3** Before any deployment (preview or production) or env-var change on Vercel/Neon.
 - **G4** Before anything is published, sent, or shared externally. The app never does this itself.
 
+## Delivery checkpoints (Andrew, 2026-11-09: "20% of the entire project at a time")
+Effort-weighted ESTIMATE (my judgement, not measured), P0 already built. Weights: P1 14, P2 22, P3 12, P4 6, P5 10, P6 5, P7 4, P8 5, P9 10, P10 12 = 100.
+| Checkpoint | Cumulative | Scope |
+|---|---|---|
+| CP1 | ~20% | P1 complete (episodes, ideas + promote, calendar in America/Jamaica, tablet UI) + P2a (scripts and script lines: create/edit, tagged kinds) |
+| CP2 | ~40% | P2b (claims, sources, line_claims, claim checker, banned-phrase check) + P3a (shots CRUD) |
+| CP3 | ~60% | P3b (recording checklists) + P4 (asset register) + P5 (posts, manual metrics) |
+| CP4 | ~80% | P6 (moments) + P7 (growth log) + P8 (lead/CTA tracker) + P9 (course planner, exactly 60:00) |
+| CP5 | 100% | P10 (import + deploy; needs G1, G2, G3) + final acceptance |
+Progress: about 5% (P1 episodes API). After each checkpoint: full suite, mutation checks, Playwright at both tablet viewports for new pages, docs + handoff updated, commit/push, short update to Andrew, STOP until he says continue.
+
 ## Phases
 
 ### P0 Foundation (depends on G0) - BUILT, AWAITING APPROVAL
 Scope: `002_content.sql` (all tables, CHECKs, triggers, RLS, `content_app` role), `core/content/` skeleton, `content_api.py` dispatcher, nav entry.
 Acceptance: migration applies twice idempotently on a throwaway DB; RLS denies a role other than `content_app`; all new routes 401 without auth; existing tests pass.
 
-### P1 Content calendar + idea backlog  (STARTED 2026-11-09; built in five ~20% slices, update after each)
-Slices: **1 Episodes + series API and status state machine (DONE, 15 tests)** · 2 Ideas API + promote idea to episode · 3 Calendar API (month/week, America/Jamaica, reschedule) · 4 UI: episode list/detail + idea backlog (tablet, 48px) · 5 UI: calendar + Playwright 1280x800 / 800x1280 + acceptance check.
+### P1 Content calendar + idea backlog  (STARTED 2026-11-09; delivery is by whole-project checkpoints, see "Delivery checkpoints")
+Done so far: episodes + series API with status state machine (15 tests).
 Scope: series, episodes, ideas; month/week calendar; promote idea → episode.
 Acceptance: create/edit/reschedule on tablet; calendar uses `America/Jamaica`; status values limited to the enum; audit on delete.
 

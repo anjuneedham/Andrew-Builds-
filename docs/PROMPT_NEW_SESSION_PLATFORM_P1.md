@@ -1,36 +1,37 @@
-# Prompt: continue the Andrew Builds content platform build (P1, slices 2-5)
+# Prompt: continue the Andrew Builds content platform build (checkpoints CP1-CP5)
 
 Paste everything below into a new Claude Code session that has `anjuneedham/Andrew-Builds-` attached, working on branch `ccr-be9f9528-gocxxq`.
 
 ---
 
-You are the platform engineer for Andrew Builds. Continue **P1 Content calendar + idea backlog** of the content platform, in the repo `Andrew-Builds-`, branch `ccr-be9f9528-gocxxq`. Do NOT create or push other branches. Do NOT open a pull request unless asked.
+You are the platform engineer for Andrew Builds. Build the content platform in the repo `Andrew-Builds-` on branch `ccr-be9f9528-gocxxq` only (no other branches, no pull request unless asked).
 
 ## Read first
-`docs/ANDREW_BUILDS_HANDOFF.md` (section "PLATFORM BUILD P1"), `docs/PLATFORM_BUILD_PLAN.md` (P1 and the testing standard), `docs/PLATFORM_ARCHITECTURE.md`, `docs/PLATFORM_STATUS.md`, `app/core/content/` and `app/dashboard/content_api.py`, `app/dashboard/static/js/content.js`.
+`docs/ANDREW_BUILDS_HANDOFF.md` (section "PLATFORM BUILD P1"), `docs/PLATFORM_BUILD_PLAN.md` (phases P1-P10, testing standard, **Delivery checkpoints**), `docs/PLATFORM_ARCHITECTURE.md`, `docs/PLATFORM_STATUS.md`, `docs/PLATFORM_DECISIONS.md`, then `app/core/content/`, `app/dashboard/content_api.py`, `app/dashboard/static/js/content.js`.
 
-## State
-Slice 1 of 5 is done: series + episodes API and status state machine (`core/content/episodes.py`, 15 tests). The full suite is 174 tests and must stay green. Slices left, one per ~20%:
-2. Ideas API (list/create/edit/delete, audit) and **promote idea -> episode** (sets `ideas.episode_id`, status SCHEDULED, creates the episode in one transaction).
-3. Calendar API: month and week views, dates interpreted in `America/Jamaica`, reschedule an episode's `planned_date`.
-4. UI: episode list/detail and idea backlog screens, tablet-first (Galaxy Tab S9 FE+), 48px touch targets, no innerHTML, no inline script (CSP), vanilla JS like the rest of the app. Create, edit, status change and delete with confirmation.
-5. UI: month/week calendar, reschedule, then Playwright checks at 1280x800 and 800x1280 and the P1 acceptance list.
+## How delivery works (Andrew's rule)
+Andrew wants **about 20% of the ENTIRE project at a time**, across all phases, then an update, then he says "continue". The checkpoints (effort-weighted estimates) are:
+- CP1 ~20%: finish P1 (ideas + promote idea to episode, calendar in `America/Jamaica`, tablet UI for episodes/ideas/calendar) + P2a (scripts and script lines, tagged kinds).
+- CP2 ~40%: P2b (claims, sources, line_claims, claim checker, banned-phrase check) + P3a (shots).
+- CP3 ~60%: P3b (recording checklists) + P4 (asset register) + P5 (posts, manual metrics).
+- CP4 ~80%: P6 (moments) + P7 (growth log) + P8 (lead/CTA tracker) + P9 (course planner, exactly 60:00).
+- CP5 100%: P10 (import + deploy) + final acceptance. Needs G1, G2, G3 first.
+Already done (~5% of the whole): the episodes + series API with the status state machine (`core/content/episodes.py`, 15 tests). Start CP1 from there. Do ONE checkpoint, then STOP.
+
+## At the end of every checkpoint
+Run the full suite; run mutation checks on the new rules (break one on purpose, see a test fail, restore byte-for-byte); Playwright at 1280x800 and 800x1280 for new pages (no console errors, no horizontal scroll, controls >= 48px); update `PLATFORM_BUILD_PLAN.md`, `PLATFORM_STATUS.md` and the handoff; commit and push to `ccr-be9f9528-gocxxq`; then give Andrew a short update: what was built, test counts, what he can try, risks, decisions needed, the exact next checkpoint. Wait for "continue". Report honestly what is NOT tested.
 
 ## Rules (binding)
-- Work ONE slice (about 20%) at a time. After each slice: run the full suite, run a mutation check (break the rule on purpose, see a test fail, restore the file byte-for-byte), update `PLATFORM_BUILD_PLAN.md` and the handoff, commit, push to `ccr-be9f9528-gocxxq`, then STOP and give Andrew a short update (what was built, tests, what is next, any decision needed). Wait for "continue".
 - Every route: 401 without a session, 400 invalid input, 404 unknown id, 409 for rule/uniqueness/dependency conflicts, safe messages only (never driver text). Every write runs inside `content_session` (role `content_app`) and writes an audit row; a failed write writes none.
-- Test against a THROWAWAY Postgres only: `pg_ctlcluster 16 main start`, then `TEST_DATABASE_URL=postgresql://<superuser>:<pw>@127.0.0.1:5432/<throwaway db> python3 -m unittest discover -s tests -t .` (create the role/database yourself; the role must be a superuser for the RLS tests). Never use the production DATABASE_URL.
-- No new migration without telling Andrew first (G1: never run a migration on a non-throwaway database). If a slice needs one, make it additive and re-runnable, test it twice, and ask before it touches anything live.
-- No deployment, env-var change, publishing, sending or sharing without Andrew's explicit approval (G3/G4). Pushes to this branch can create Vercel preview builds; do not change Vercel settings.
-- Never print, request or store passwords, tokens, connection strings or keys. The Supabase/Vercel secrets belong to Andrew.
-- The platform never publishes anything itself. Do not invent facts, numbers or approvals. Mark nothing "approved" unless Andrew said so in his own words.
-- Query strings do not reach the handler on Vercel (path only): design list endpoints accordingly (filter client-side or use path segments).
-- Existing Outreach Desk pages must keep working.
+- Test against a THROWAWAY Postgres only: `pg_ctlcluster 16 main start`, create a superuser role + empty database, then `TEST_DATABASE_URL=postgresql://<role>:<pw>@127.0.0.1:5432/<db> python3 -m unittest discover -s tests -t .` (superuser needed for the RLS tests). Never use the production DATABASE_URL.
+- **G1**: never run a migration on a non-throwaway database without Andrew's yes. New migrations must be additive and re-runnable, tested twice. **G2**: no import of existing files/data or schema change to existing tables without approval. **G3**: no deployment, preview-promotion, env-var change or Vercel/Supabase setting change without approval (pushes to this branch can create preview builds; do not touch settings). **G4**: nothing is published, sent or shared; the platform never does it itself.
+- Never print, request or store passwords, tokens, connection strings or keys.
+- Do not invent facts, numbers or approvals. Mark nothing approved unless Andrew said so in his own words.
+- The serverless entry passes only the URL path (no query string) to handlers: design list endpoints accordingly.
+- The tablet is the primary device (Galaxy Tab S9 FE+): vanilla JS, no innerHTML, no inline script, CSP unchanged, 48px targets. Existing Outreach Desk pages must keep working.
+- The live site (`andrew-builds-platform.vercel.app`, Supabase in the "Content platform" org) runs an older build and is Andrew's. Do not change it.
 
-## Acceptance for P1 (from the plan)
-Create, edit and reschedule on the tablet; calendar uses `America/Jamaica`; status values limited to the enum; audit on delete. Plus: 401/400/404/409 coverage, Playwright at both viewports, no console errors, no horizontal scroll, controls >= 48px.
+## Approvals still open (remind Andrew, do not assume)
+P0 acceptance; G0, D1, D7, D8-D14 (wording: "Approved: P0 accepted. G0, D1, D7 and D8-D14 approved."); G1 before any live migration; G3 before deploying anything new.
 
-## Open approvals to remind Andrew about (do not assume)
-P0 acceptance; G0, D1, D7, D8-D14 (suggested wording: "Approved: P0 accepted. G0, D1, D7 and D8-D14 approved."); G1 before any migration on the live database; G3 before deploying P1.
-
-Begin with slice 2.
+Begin CP1.

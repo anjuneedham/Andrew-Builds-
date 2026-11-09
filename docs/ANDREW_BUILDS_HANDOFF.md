@@ -39,8 +39,8 @@ Project `andrew-builds-platform` (team Yardscale Digital), linked to `anjuneedha
 
 ### PLATFORM BUILD P1 (started 2026-11-09). Andrew: "Both ... follow the guideline ... 20% at a time, share updates, give a prompt for a new session"
 Authorisation: Andrew asked to begin P1 following `PLATFORM_BUILD_PLAN.md`. NOT individually recorded as approved: P0 acceptance, G0/D1/D7/D8-D14 (ask him to confirm with the suggested wording). Throwaway local Postgres 16 only; no migration was written or run on the live Supabase.
-- **Slice 1 DONE (20%)**: `core/content/episodes.py` (series list; episode create/get/list/edit/status/delete), routes in `dashboard/content_api.py`, `tests/unit/test_content_p1_episodes.py` (15 tests incl. 401s, 400/404/409 mapping, state machine, DB READY_TO_RECORD gate, audit on every write and none on failure). Full suite 174/174 on local Postgres 16; 3 mutation checks caught. No UI yet (slice 4). GET filters/query strings are not supported by the serverless entry (path only), so lists are unfiltered.
-- Remaining: slice 2 ideas + promote; 3 calendar; 4 UI lists; 5 UI calendar + Playwright + acceptance.
+- **First piece DONE (about 5% of the WHOLE project)**: `core/content/episodes.py` (series list; episode create/get/list/edit/status/delete), routes in `dashboard/content_api.py`, `tests/unit/test_content_p1_episodes.py` (15 tests incl. 401s, 400/404/409 mapping, state machine, DB READY_TO_RECORD gate, audit on every write and none on failure). Full suite 174/174 on local Postgres 16; 3 mutation checks caught. No UI yet (slice 4). GET filters/query strings are not supported by the serverless entry (path only), so lists are unfiltered.
+- Delivery is by WHOLE-PROJECT checkpoints of ~20% (CP1-CP5, table in `PLATFORM_BUILD_PLAN.md`), not slices of P1. Next: finish CP1 (rest of P1 + P2a).
 - Prompts for other sessions: `docs/PROMPT_NEW_SESSION_PLATFORM_P1.md` (continue the build) and `docs/PROMPT_CHATGPT_60MIN_COURSE.md` (course directive + script).
 - Live site `andrew-builds-platform.vercel.app` runs the older build (Outreach Desk + read-only Content page). P1 is not deployed (G3).
 
