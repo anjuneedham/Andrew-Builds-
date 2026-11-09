@@ -6,7 +6,8 @@ never driver text."""
 import json
 import re
 
-from core.content import access, episodes, meta, status
+from core.content import access, episodes, ideas, meta, schedule, scripts, status
+from core.content.common import Conflict, Invalid, NotFound
 
 CONTENT_MAX_BODY = 65_536
 
@@ -27,40 +28,60 @@ def _meta():
     }
 
 
-_ID = re.compile(r"^episodes/(\d{1,18})(?:/(status))?$")
-
-
 def _json_body(body: bytes) -> dict:
     if len(body) > CONTENT_MAX_BODY:
-        raise episodes.Invalid("request body too large")
+        raise Invalid("request body too large")
     try:
         data = json.loads(body or b"{}")
     except (ValueError, UnicodeDecodeError):
-        raise episodes.Invalid("body must be JSON") from None
+        raise Invalid("body must be JSON") from None
     if not isinstance(data, dict):
-        raise episodes.Invalid("body must be a JSON object")
+        raise Invalid("body must be a JSON object")
     return data
 
 
-def _episodes_route(method, p, conn, body):
-    if p == "episodes":
-        if method == "GET":
-            return 200, episodes.list_episodes(conn)
-        if method == "POST":
-            return 201, episodes.create_episode(conn, _json_body(body))
-        return None
-    m = _ID.match(p)
-    if not m:
-        return None
-    eid, sub = int(m.group(1)), m.group(2)
-    if sub == "status":
-        return (200, episodes.change_status(conn, eid, _json_body(body))) if method == "POST" else None
-    if method == "GET":
-        return 200, episodes.get_episode(conn, eid)
-    if method == "PATCH":
-        return 200, episodes.update_episode(conn, eid, _json_body(body))
-    if method == "DELETE":
-        return 200, episodes.delete_episode(conn, eid)
+# (pattern, {METHOD: handler(conn, raw_body, *path_ids) -> (status, object)}). A known path with another method is a 404.
+# The serverless entry hands us the URL path only (no query string), so every filter lives in the path.
+def _routes():
+    j = _json_body
+    return [
+        (r"series", {"GET": lambda c, b: (200, episodes.list_series(c))}),
+        (r"episodes", {"GET": lambda c, b: (200, episodes.list_episodes(c)), "POST": lambda c, b: (201, episodes.create_episode(c, j(b)))}),
+        (r"episodes/(\d{1,18})", {"GET": lambda c, b, i: (200, episodes.get_episode(c, i)),
+                                  "PATCH": lambda c, b, i: (200, episodes.update_episode(c, i, j(b))),
+                                  "DELETE": lambda c, b, i: (200, episodes.delete_episode(c, i))}),
+        (r"episodes/(\d{1,18})/status", {"POST": lambda c, b, i: (200, episodes.change_status(c, i, j(b)))}),
+        (r"episodes/(\d{1,18})/scripts", {"GET": lambda c, b, i: (200, scripts.list_scripts(c, i)),
+                                          "POST": lambda c, b, i: (201, scripts.create_script(c, i, j(b)))}),
+        (r"ideas", {"GET": lambda c, b: (200, ideas.list_ideas(c)), "POST": lambda c, b: (201, ideas.create_idea(c, j(b)))}),
+        (r"ideas/(\d{1,18})", {"GET": lambda c, b, i: (200, ideas.get_idea(c, i)),
+                               "PATCH": lambda c, b, i: (200, ideas.update_idea(c, i, j(b))),
+                               "DELETE": lambda c, b, i: (200, ideas.delete_idea(c, i))}),
+        (r"ideas/(\d{1,18})/status", {"POST": lambda c, b, i: (200, ideas.change_status(c, i, j(b)))}),
+        (r"ideas/(\d{1,18})/promote", {"POST": lambda c, b, i: (201, ideas.promote(c, i, j(b)))}),
+        (r"calendar/today", {"GET": lambda c, b: (200, schedule.current())}),
+        (r"calendar/month/([^/]{1,12})", {"GET": lambda c, b, m: (200, schedule.month(c, str(m)))}),
+        (r"calendar/week/([^/]{1,12})", {"GET": lambda c, b, d: (200, schedule.week(c, str(d)))}),
+        (r"scripts/(\d{1,18})", {"GET": lambda c, b, i: (200, scripts.get_script(c, i)),
+                                 "PATCH": lambda c, b, i: (200, scripts.update_script(c, i, j(b))),
+                                 "DELETE": lambda c, b, i: (200, scripts.delete_script(c, i))}),
+        (r"scripts/(\d{1,18})/status", {"POST": lambda c, b, i: (200, scripts.change_status(c, i, j(b)))}),
+        (r"scripts/(\d{1,18})/lines", {"POST": lambda c, b, i: (201, scripts.add_line(c, i, j(b)))}),
+        (r"lines/(\d{1,18})", {"PATCH": lambda c, b, i: (200, scripts.update_line(c, i, j(b))),
+                               "DELETE": lambda c, b, i: (200, scripts.delete_line(c, i))}),
+        (r"lines/(\d{1,18})/move", {"POST": lambda c, b, i: (200, scripts.move_line(c, i, j(b)))}),
+    ]
+
+
+ROUTES = [(re.compile("^" + pat + "$"), fns) for pat, fns in _routes()]
+
+
+def _dispatch(method, p, conn, body):
+    for rx, fns in ROUTES:
+        m = rx.match(p)
+        if m and method in fns:
+            args = [int(g) if g.isdigit() else g for g in m.groups()]   # ids are digits; calendar parts are strings
+            return fns[method](conn, body, *args)
     return None
 
 
@@ -74,15 +95,13 @@ def handle(method, path, conn, body: bytes):
     try:
         # every write runs as content_app inside one transaction; a raised error rolls the whole request back
         with access.content_session(conn):
-            if p == "series" and method == "GET":
-                return _out(200, episodes.list_series(conn))
-            res = _episodes_route(method, p, conn, body)
+            res = _dispatch(method, p, conn, body)
             if res is not None:
                 return _out(*res)
-    except episodes.Invalid as e:
+    except Invalid as e:
         return _out(400, {"error": str(e)})
-    except episodes.NotFound as e:
+    except NotFound as e:
         return _out(404, {"error": str(e)})
-    except episodes.Conflict as e:
+    except Conflict as e:
         return _out(409, {"error": str(e)})
     return _out(404, {"error": "not found"})

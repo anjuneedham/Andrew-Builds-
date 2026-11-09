@@ -1,8 +1,8 @@
 # Platform Status
 
-Last updated: 2026-11-08
+Last updated: 2026-11-09
 
-**Current phase: P0 Foundation is BUILT and TESTED. STOPPED at the P0 approval gate. P1 has NOT started.**
+**Current phase: CP1 (P1 complete + P2a) is BUILT and TESTED, about 20% of the whole project. STOPPED, waiting for Andrew to say "continue" (CP2 next). P0 acceptance is still not recorded.**
 (The kickoff brief groups work into 7 phases; this plan uses P0-P10. Brief "Phase 1 Foundation" = plan P0.)
 
 ## Approval record
@@ -31,6 +31,34 @@ Last updated: 2026-11-08
 | Existing pages (Today/Pipeline/Playbooks/Insights) still load in the browser | PASSED (load only) |
 | `production/tools/qa.py project` secret scan | PASSED |
 
+## CP1 results (2026-11-09, throwaway local Postgres 16 only)
+| Check | Result |
+|---|---|
+| Full suite (174 before CP1 + 45 new) | PASSED 219/219 |
+| New: ideas + promote + calendar (`test_content_p1_ideas_calendar.py`) | PASSED 20 |
+| New: scripts + lines (`test_content_p2a_scripts.py`) | PASSED 24 |
+| New: real HTTP handler answers PATCH and DELETE (`test_http_methods.py`) | PASSED 1 |
+| Every new route: 401 without/with bad session; 400 invalid input; 404 unknown id; 409 rule/dependency; safe messages; audit on every write, none on a failed write | PASSED (unit, through the real handler + owner auth) |
+| Mutation checks on new rules (18 deliberate breaks: promote rule, Jamaica date, Monday weeks, overdue, strict dates, idea release on episode delete, script step order, LOCKED final, FACT default, line insert/delete/move, claim-link copy, archived-episode rule, PATCH/DELETE handlers, no-innerHTML) | PASSED, 18/18 made a test fail; each file restored byte-identical (sha256 checked) |
+| Browser, real login, 1280x800 and 800x1280 (`tests/e2e/content_cp1.js`): create idea, promote, see it on the calendar, reschedule, week view and Next/Previous/Today, script editor (add, retag, reorder), FACT line refused with a clear message, retag then READY_TO_RECORD, episode then READY_TO_RECORD, every content page: no horizontal scroll, controls >= 48px, dark theme, existing pages load | PASSED 21/21, 0 console errors, 0 5xx |
+| Migrations | NONE added in CP1 (G1 not triggered). No existing table changed (G2). |
+
+**Bug found by the browser run and fixed:** neither the local server nor the Vercel handler (`api/index.py`) answered PATCH or DELETE (HTTP 501), so the episode edit/delete routes from the earlier slice could not have worked outside unit tests. Both now route them; `test_http_methods.py` fails without the fix (verified).
+
+### Built in CP1
+`core/content/{common,ideas,schedule,scripts}.py`; `episodes.py` (strict date, deleting an episode returns its idea to BACKLOG); table-driven `dashboard/content_api.py`;
+UI `content.js` (tabs, helpers, Foundation), `content_board.js` (calendar, episodes, ideas), `content_script.js` (script editor); CSS; service-worker cache `od-shell-v3`.
+New routes: `GET/POST /ideas`, `GET/PATCH/DELETE /ideas/{id}`, `POST /ideas/{id}/status|promote`, `GET /calendar/today|month/YYYY-MM|week/YYYY-MM-DD`,
+`GET/POST /episodes/{id}/scripts`, `GET/PATCH/DELETE /scripts/{id}`, `POST /scripts/{id}/status|lines`, `PATCH/DELETE /lines/{id}`, `POST /lines/{id}/move`.
+
+### CP1 NOT tested / not built
+- NOT BUILT (CP2): claims, sources, linking claims to lines, the claim checker screen, banned-phrase check. Until then **any FACT line blocks a script from READY_TO_RECORD** (the database gate; the UI says so). Only non-factual lines can pass.
+- NOT TESTED: Neon/Supabase/Vercel, real Galaxy Tab S9 FE+, Samsung Internet, Firefox, Safari (Chromium touch emulation only); the installed-PWA cache update to `od-shell-v3`; offline.
+- NOT RUN: `tests/e2e/content_p0.js` after its edits for the new tab layout (it expects seed data that the throwaway database no longer has); `tests/e2e/journey.js`. `content_cp1.js` covers the Foundation tab and existing page loads instead.
+- NOT MEASURED: tap targets inside the day dialog were measured for the add form and reschedule only; very long titles/notes were not stress-tested visually.
+- Local-runner and Vercel-handler parity: PATCH/DELETE are covered by a socket test of the Vercel handler class and by the browser run on the local runner; the live Vercel deployment itself was not exercised (G3).
+- Calendar "today" uses the server clock converted to America/Jamaica. Unit tests fake the clock; the real clock was only seen in the browser run.
+
 ## Built in P0
 Migrations `002_content.sql` and `003_episode_qa_status.sql` (adds episode status `QA`) (19 tables, constraints, triggers, RLS, `content_app` role, seed: 4 series + 1 course plan row); `core/content/` (access, meta, status);
 `dashboard/content_api.py` (`GET /api/content/meta`, `GET /api/content/health`); Content page and nav entry; 48px touch targets for nav.
@@ -56,4 +84,4 @@ Migrations `002_content.sql` and `003_episode_qa_status.sql` (adds episode statu
 8. Content-Platform repo is still empty and unused (D7).
 
 ## Next action
-Andrew reviews P0 and replies with explicit approval (see handoff for wording). Then P1 (calendar, idea backlog, episodes).
+Andrew says "continue" to start CP2 (P2b claims/sources/checker/banned phrases + P3a shots). Still open: P0 acceptance and G0/D1/D7/D8-D14 (wording in the handoff); G1 before any live migration; G3 before deploying anything.

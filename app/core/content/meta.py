@@ -63,8 +63,7 @@ RULES = (
 
 # Honest list of what does not exist yet. The UI shows it so a rendered screen is never mistaken for a finished feature.
 NOT_BUILT = (
-    ("P1", "Content calendar, idea backlog, episode management"),
-    ("P2", "Script editor, claims register, claim checker screen"),
+    ("P2b", "Claims register, sources, claim checker screen, banned-phrase check (script editor exists, but FACT lines cannot yet cite claims)"),
     ("P3", "Shot lists and recording checklist"),
     ("P4", "Asset register"),
     ("P5", "Publishing log, publish gate, manual metrics"),

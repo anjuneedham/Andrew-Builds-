@@ -144,6 +144,8 @@ def serve(host="127.0.0.1", port=8080):
 
         do_GET = lambda self: self._go("GET")
         do_POST = lambda self: self._go("POST")
+        do_PATCH = lambda self: self._go("PATCH")
+        do_DELETE = lambda self: self._go("DELETE")
 
         def log_message(self, *a):
             pass

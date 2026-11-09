@@ -3,15 +3,15 @@ Validation errors raise Invalid (400); unknown ids raise NotFound (404); rule/un
 Messages are written here and are safe to show; driver text never leaves this module."""
 
 import re
-from datetime import date
 
 import psycopg
 
 from core.audit import audit
 from core.content import access
+from core.content.common import ACTOR, Conflict, Invalid, NotFound, iso_date
+from core.content.common import text as _text
 from core.content.meta import ENUMS
 
-ACTOR = "owner"
 STATUSES = ENUMS[("episodes", "status")]
 CODE_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,39}$")
 PATH_RE = re.compile(r"^production/[A-Za-z0-9._/-]+$")
@@ -32,44 +32,13 @@ TRANSITIONS = {
 }
 
 
-class Invalid(Exception):
-    pass
-
-
-class NotFound(Exception):
-    pass
-
-
-class Conflict(Exception):
-    pass
-
-
 def _row(r):
     return {k: (v.isoformat() if hasattr(v, "isoformat") else v) for k, v in dict(r).items()}
 
 
-def _text(body, key, required=False, maxlen=200):
-    v = body.get(key)
-    if v is None:
-        if required:
-            raise Invalid(f"{key} is required")
-        return None
-    if not isinstance(v, str) or not v.strip():
-        raise Invalid(f"{key} must be non-empty text")
-    v = v.strip()
-    if len(v) > maxlen:
-        raise Invalid(f"{key} is too long (max {maxlen})")
-    return v
-
-
 def _date(body):
-    v = body.get("planned_date")
-    if v is None:
-        return None
-    try:
-        return date.fromisoformat(v).isoformat()
-    except (TypeError, ValueError):
-        raise Invalid("planned_date must be YYYY-MM-DD") from None
+    d = iso_date(body.get("planned_date"))
+    return d.isoformat() if d else None
 
 
 def _duration(body):
@@ -186,6 +155,8 @@ def delete_episode(conn, eid: int):
     ep = get_episode(conn, eid)
     if ep["status"] not in ("IDEA", "ARCHIVED"):
         raise Conflict("only IDEA or ARCHIVED episodes can be deleted; archive it first")
+    # an idea that was promoted into this episode goes back to the backlog instead of pointing at nothing
+    conn.execute("UPDATE ideas SET status = 'BACKLOG', episode_id = NULL WHERE episode_id = ?", (eid,))
     _guard(lambda: conn.execute("DELETE FROM episodes WHERE id = ?", (eid,)))
     audit(conn, ACTOR, "content.episode.delete", f"episode:{eid}", ep["code"])
     return {"deleted": eid}

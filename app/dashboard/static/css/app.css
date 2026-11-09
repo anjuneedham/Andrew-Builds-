@@ -233,3 +233,31 @@ input,select{min-height:48px}
 .chips button,.tabs button{min-height:48px}
 .check input{min-height:0}
 input[type=range]{min-height:48px}
+
+/* ---- content platform CP1: calendar, episodes, ideas, script editor ---- */
+.stack{display:grid;gap:14px;min-width:0}
+a.item,a.btn{text-decoration:none;color:inherit}
+a.item .t,.item .t a{color:inherit}
+.item a.t{text-decoration:none}
+.sub.pre{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--ink)}
+.calbar{justify-content:space-between}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.calh{font:600 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;padding:4px 0}
+.calday{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-height:96px;min-width:0;padding:6px;border:1px solid var(--line);border-radius:8px;
+  background:var(--surface-2);color:var(--ink);cursor:pointer;text-align:left;overflow:hidden}
+.calday:hover{border-color:var(--royal)}
+.calday.out{opacity:.55}
+.calday.today{border:2px solid var(--gold)}
+.calday .dn{font:700 14px var(--mono)}
+.calday.today .dn{background:var(--gold);color:var(--navy);border-radius:99px;padding:0 7px}
+.calchip,.calmore{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:600 11px var(--mono);padding:2px 6px;border-radius:6px}
+.calchip{background:var(--royal);color:#fff}.calchip.late{background:var(--bad)}
+.calmore{color:var(--muted);padding:0 2px}
+.line{border-left:4px solid var(--line)}.line.fact{border-left-color:var(--warn)}
+.line .pos{font:700 15px var(--mono);min-width:1.6em;text-align:center;background:var(--chip);border-radius:8px;padding:4px 6px}
+.line textarea{min-height:64px}
+.line .row select{width:auto;min-width:190px;flex:1 1 190px}
+.banner{padding:12px 14px;border:1px solid var(--warn);border-radius:10px;background:color-mix(in srgb,var(--warn) 14%,transparent);font-weight:600}
+textarea{width:100%;min-height:72px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);resize:vertical}
+textarea:disabled{opacity:.75}
+.tabs{overflow-x:auto}

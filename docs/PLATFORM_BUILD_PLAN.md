@@ -1,6 +1,6 @@
 # Platform Build Plan
 
-Status: **P0 built and tested (2026-11-08), awaiting Andrew's approval at the P0 gate. P1-P10 not started.** Results: `PLATFORM_STATUS.md`. See `PLATFORM_ARCHITECTURE.md` for the model.
+Status: **P0 built (awaiting Andrew's approval at the P0 gate). CP1 (P1 + P2a) BUILT and TESTED 2026-11-09, awaiting Andrew's "continue". P2b-P10 not started.** Results: `PLATFORM_STATUS.md`. See `PLATFORM_ARCHITECTURE.md` for the model.
 
 ## Testing standard (every phase)
 - Unit tests in `app/tests/unit/test_content_*.py` against a **throwaway** Postgres (`TEST_DATABASE_URL`), through the real HTTP handler + auth.
@@ -25,7 +25,7 @@ Effort-weighted ESTIMATE (my judgement, not measured), P0 already built. Weights
 | CP3 | ~60% | P3b (recording checklists) + P4 (asset register) + P5 (posts, manual metrics) |
 | CP4 | ~80% | P6 (moments) + P7 (growth log) + P8 (lead/CTA tracker) + P9 (course planner, exactly 60:00) |
 | CP5 | 100% | P10 (import + deploy; needs G1, G2, G3) + final acceptance |
-Progress: about 5% (P1 episodes API). After each checkpoint: full suite, mutation checks, Playwright at both tablet viewports for new pages, docs + handoff updated, commit/push, short update to Andrew, STOP until he says continue.
+Progress: about 20% (CP1 done: P1 complete + P2a; effort-weighted estimate). After each checkpoint: full suite, mutation checks, Playwright at both tablet viewports for new pages, docs + handoff updated, commit/push, short update to Andrew, STOP until he says continue.
 
 ## Phases
 
@@ -33,12 +33,12 @@ Progress: about 5% (P1 episodes API). After each checkpoint: full suite, mutatio
 Scope: `002_content.sql` (all tables, CHECKs, triggers, RLS, `content_app` role), `core/content/` skeleton, `content_api.py` dispatcher, nav entry.
 Acceptance: migration applies twice idempotently on a throwaway DB; RLS denies a role other than `content_app`; all new routes 401 without auth; existing tests pass.
 
-### P1 Content calendar + idea backlog  (STARTED 2026-11-09; delivery is by whole-project checkpoints, see "Delivery checkpoints")
-Done so far: episodes + series API with status state machine (15 tests).
+### P1 Content calendar + idea backlog  (DONE in CP1, 2026-11-09; delivery is by whole-project checkpoints, see "Delivery checkpoints")
+Built: episodes + series API with status state machine; ideas CRUD, drop/restore, promote idea to episode; calendar month/week/today in `America/Jamaica` with overdue flag; tablet UI (Calendar, Episodes, Ideas tabs). 45 new unit tests + 21 browser checks.
 Scope: series, episodes, ideas; month/week calendar; promote idea → episode.
 Acceptance: create/edit/reschedule on tablet; calendar uses `America/Jamaica`; status values limited to the enum; audit on delete.
 
-### P2 Script editor + claims + claim checker
+### P2 Script editor + claims + claim checker  (P2a DONE in CP1: scripts and script lines, tagged kinds, step order, new version from old; P2b NOT started)
 Scope: scripts, script_lines, claims, sources, line_claims, claim_sources; checker; banned-phrase check.
 Acceptance: a FACT line with no claim blocks `READY_TO_RECORD`; a FACT line linked to a `PLANNED`, `UNKNOWN` or `PARTIALLY_CONFIRMED` claim blocks it;
 OPINION/QUESTION/HYPOTHESIS lines do not need claims; banned phrases block; DB trigger blocks the transition even if the API is bypassed; checker output lists each failing line.

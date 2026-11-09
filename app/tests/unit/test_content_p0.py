@@ -841,16 +841,17 @@ class ShellTest(unittest.TestCase):
         sw = dash.static_file("/sw.js")[1].decode()
         for src in re.findall(r'<script src="(/js/[^"]+)"', dash.PAGE):
             self.assertIn(f'"{src}"', sw, f"{src} is loaded by the page but missing from the service-worker shell list")
-        self.assertIn("od-shell-v2", sw, "the shell cache version must be bumped when the shell file list changes")
+        self.assertIn("od-shell-v3", sw, "the shell cache version must be bumped when the shell file list changes")
 
     def test_content_is_in_the_navigation(self):
         main = dash.static_file("/js/main.js")[1].decode()
         self.assertIn('["content", "Content"]', main)
 
     def test_content_page_uses_no_innerhtml(self):
-        src = dash.static_file("/js/content.js")[1].decode()
-        for bad in ("innerHTML", "outerHTML", "insertAdjacentHTML", "document.write", "eval("):
-            self.assertNotIn(bad, src)
+        for f in ("content.js", "content_board.js", "content_script.js"):
+            src = dash.static_file("/js/" + f)[1].decode()
+            for bad in ("innerHTML", "outerHTML", "insertAdjacentHTML", "document.write", "eval(", "new Function"):
+                self.assertNotIn(bad, src, f)
 
     def test_csp_still_forbids_inline_script(self):
         self.assertIn("script-src 'self'", dash.HEADERS["Content-Security-Policy"])

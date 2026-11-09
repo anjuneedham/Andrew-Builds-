@@ -92,5 +92,11 @@ class handler(BaseHTTPRequestHandler):
     def do_POST(self):
         self._go("POST")
 
+    def do_PATCH(self):
+        self._go("PATCH")
+
+    def do_DELETE(self):
+        self._go("DELETE")
+
     def log_message(self, *args):  # no request logging: headers may carry tokens
         pass

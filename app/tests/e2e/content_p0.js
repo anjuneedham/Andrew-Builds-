@@ -51,8 +51,9 @@ function totp(step) { const b = Buffer.alloc(8); b.writeBigUInt64BE(BigInt(step)
     const nav = orient === "landscape" ? "#nav-side" : "#nav-tabs";
     await step("B2", "Content is in the navigation and opens the page", async () => {
       await page.locator(`${nav} a[data-page=content]`).click();
+      await page.locator(".tabs button", { hasText: "Foundation" }).click();
       await page.locator("#page-title").filter({ hasText: "Content" }).waitFor({ timeout: 6000 });
-      await page.getByText("Foundation only").first().waitFor({ timeout: 6000 });
+      await page.getByText("Foundation status").first().waitFor({ timeout: 6000 });
     });
     await step("C1", "Page shows live database state (RLS on, queried as content_app)", async () => {
       await page.getByText("Row-level security on").first().waitFor({ timeout: 4000 });
@@ -71,7 +72,7 @@ function totp(step) { const b = Buffer.alloc(8); b.writeBigUInt64BE(BigInt(step)
     });
     await step("C4", "Planned work is labelled NOT BUILT (nothing presented as finished)", async () => {
       await page.getByText("Not built yet").first().waitFor({ timeout: 4000 });
-      for (const p of ["P1", "P2", "P5", "P9", "P10"]) await page.locator(".pill", { hasText: new RegExp(`^${p}$`) }).first().waitFor({ timeout: 2000 });
+      for (const p of ["P2b", "P5", "P9", "P10"]) await page.locator(".pill", { hasText: new RegExp(`^${p}$`) }).first().waitFor({ timeout: 2000 });
     });
     await step("C5", "Hide-list term is never shown on screen", async () => {
       const body = await page.locator("body").innerText();
@@ -93,7 +94,7 @@ function totp(step) { const b = Buffer.alloc(8); b.writeBigUInt64BE(BigInt(step)
     });
     await step("D4", "Refresh button works by touch (tap)", async () => {
       await page.getByRole("button", { name: "Refresh" }).tap();
-      await page.getByText("Foundation only").first().waitFor({ timeout: 4000 });
+      await page.getByText("Foundation status").first().waitFor({ timeout: 4000 });
     });
     await page.screenshot({ path: path.join(OUT, `content_${orient}_light.png`), fullPage: true });
     await step("E1", "Dark theme renders the page", async () => {

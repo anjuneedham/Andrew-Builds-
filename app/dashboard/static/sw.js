@@ -1,7 +1,7 @@
 // App-shell cache so the installed app opens instantly and shows a shell offline.
 // Never caches /api/*, /mcp/*, or anything with a login token.
-const SHELL = "od-shell-v2";
-const FILES = ["/", "/css/fonts.css", "/css/app.css", "/js/core.js", "/js/sales.js", "/js/playbooks.js", "/js/insights.js", "/js/content.js", "/js/main.js", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png"];
+const SHELL = "od-shell-v3";
+const FILES = ["/", "/css/fonts.css", "/css/app.css", "/js/core.js", "/js/sales.js", "/js/playbooks.js", "/js/insights.js", "/js/content.js", "/js/content_board.js", "/js/content_script.js", "/js/main.js", "/manifest.webmanifest", "/icon-192.png", "/icon-512.png"];
 self.addEventListener("install", e => e.waitUntil(caches.open(SHELL).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener("activate", e => e.waitUntil(
   caches.keys().then(ks => Promise.all(ks.filter(k => k !== SHELL).map(k => caches.delete(k)))).then(() => self.clients.claim())));
