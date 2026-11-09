@@ -31,6 +31,9 @@ No Supabase needed by the app. 6 production deploys now, all failed with VULNERA
 ### Content platform go-live (Andrew 2026-11-09: "I need the link live", new separate Supabase project)
 Platform needs only `DATABASE_URL` (any postgres:// URL) + `OWNER_SETUP_TOKEN` (20+ chars, first setup only) on Vercel with Root Directory `app`; schema migrates on first start. Andrew chose a NEW Supabase project (not Agriloop's). Risks noted: (1) Supabase Data API exposes `public` tables over HTTP: turn it OFF for this project because legacy tables hold owner credentials/leads without RLS; (2) migration needs the connecting role to CREATE ROLE and GRANT (untested on Supabase; G1 item); (3) free Supabase projects pause after inactivity. NOT TESTED on Supabase/Vercel. Andrew creates the secrets himself; no secrets in chat or git. G1 target approval = Andrew's choice above (confirm).
 
+### Vercel project created (2026-11-09, Andrew approved)
+Project `andrew-builds-platform` (team Yardscale Digital), linked to `anjuneedham/Andrew-Builds-`, Root Directory `app`, no env vars yet. Its production branch is the repo default `ccr-e319a82c-wm4cgs` (old hand-over, no content platform): Andrew must set Settings > Git > Production Branch to `ccr-be9f9528-gocxxq` (tool cannot). Database: Neon (Andrew's choice 2026-11-09). Without `DATABASE_URL` every `/api` route answers 503 by design (fails closed). No G3 sign-off for publishing anything; this is the platform only.
+
 ### Known gaps
 `[RECORD]` L009 (why TradeNotes), L013 (what he decided/checked 8 Nov), L036-L037 (ending, after attempt). C-046 which affiliate programmes are real. Database choice. Q-D1 split of work. Hide-list findings from Gate 1 (plans.ts links, session URLs, Supabase dashboard, public SALES_PLAYBOOK copy P-10) still apply.
 
