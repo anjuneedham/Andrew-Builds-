@@ -10,7 +10,7 @@ Approval status: G0 assumed from the kickoff brief (verbatim wording not given; 
 |---|---|
 | Current content package | **E003** "My first TradeNotes test found a bug. My first deploy failed four times." Arc B, P2 primary / P4 secondary |
 | Package location | `production/episode-003/` (scaffolded with `new_episode.py`); package files in `production/episode-003/package/`: `content-brief.md`, `script.md`, `claims-register.md` (others created at Gates 3-5) |
-| Script status | v1 DRAFT (45 lines, about 1,150 spoken words, 3 `[RECORD]` slots + ending written after recording) |
+| Script status | v1 DRAFT (45 lines, about 580 spoken words, roughly 4 min of narration; live test run and fix attempt add screen time, so expect 7-9 min, 3 `[RECORD]` slots + ending written after recording) |
 | Claim-check status | Manual check done: FACT lines cite CONFIRMED only, except L036 (outcome of the fix, UNKNOWN by design, added at G-RECORD). New claims C-037..C-051 and P-12 added to `docs/CLAIMS_REGISTER.md`. C-046 (affiliates) and C-051 UNKNOWN |
 | Founder approvals | G-IDEA **approved 2026-11-09** ("Approved G-IDEA E003"). Disclaimer wording approved. CS-0 followed provisionally with his OK. G-SCRIPT pending |
 | Recording / Editing / QA / Publishing | Not started |

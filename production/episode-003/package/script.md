@@ -1,6 +1,6 @@
 # E003 Script v1 (DRAFT, awaiting G-SCRIPT)
 
-Episode E003 · Pillar P2 primary / P4 secondary · Arc B · Length guide ~9-10 min (about 1,150 spoken words) · **Trading content: yes** · Gate status: G-IDEA [x] G-SCRIPT [ ] G-RECORD [ ] G-EDIT [ ] G-QA [ ] G-PUBLISH [ ]
+Episode E003 · Pillar P2 primary / P4 secondary · Arc B · Length guide: expect 7-9 min (about 580 spoken words, roughly 4 min of narration; live test run and fix attempt add screen time, so expect 7-9 min) · **Trading content: yes** · Gate status: G-IDEA [x] G-SCRIPT [ ] G-RECORD [ ] G-EDIT [ ] G-QA [ ] G-PUBLISH [ ]
 Line format: `L### | KIND | text | claims | shot`. Shot IDs are provisional until Gate 3. FACT lines use the claim wording in `claims-register.md`. Any reword is re-checked.
 Voice: Andrew, voiceover over tablet screen recordings. `[RECORD]` = only in your own words and only if true. Nothing here is a number or outcome you have not verified.
 

@@ -14,7 +14,7 @@ Status: **G-IDEA APPROVED by Andrew (2026-11-09, "Approved G-IDEA E003").** G-SC
 | Purpose | Start Arc B honestly; show the real "tests pass locally, deploy fails" gap; give the course real M5/M6 material |
 | Main takeaway (OPINION) | AI can write the app in a day. Whether it is safe and reachable is still a question you have to ask |
 | CTA | `CTA-E003-YT`: follow the build. No sign-up promise: the product cannot be used yet |
-| Length guide | About 9-10 min (length follows the material) |
+| Length guide | Expect 7-9 min: about 4 min of narration plus live screen time (length follows the material) |
 | Trading content | **Yes**: approved disclaimer (below) spoken early, repeated on screen and in every description |
 | People on screen | None. Voiceover recorded separately over tablet screen recordings |
 | Moment window | 2026-11-08 to the day of the fix attempt |
