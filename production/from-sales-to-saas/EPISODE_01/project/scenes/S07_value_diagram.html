@@ -1,0 +1,41 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../lib/base.css">
+<style>
+.row{position:absolute;left:0;right:0;top:440px;display:flex;justify-content:space-between;align-items:center}
+.node{width:400px;height:250px;border:1.5px solid var(--line);background:var(--bg2);border-radius:6px;display:flex;flex-direction:column;justify-content:center;padding:0 40px}
+.node .n{font-family:var(--mono);font-size:20px;color:var(--mute);letter-spacing:.2em;margin-bottom:18px}
+.node .t{font-size:52px;font-weight:600;letter-spacing:-.015em}
+.node.goal{border-color:var(--accent)} .node.goal .t{color:var(--accent)}
+.arrow{flex:1;height:2px;background:var(--line);margin:0 26px;position:relative;transform-origin:left}
+.arrow:after{content:"";position:absolute;right:-2px;top:-7px;border-left:14px solid var(--line);border-top:8px solid transparent;border-bottom:8px solid transparent}
+.sub{position:absolute;left:0;top:750px;font-size:34px;color:var(--mute);font-weight:400}
+</style></head><body><div id="stage"><div class="grain"></div>
+<div class="safe">
+ <div class="kicker" id="k">Lesson 01 · Sales</div>
+ <div class="headline" id="h" style="margin-top:26px">People buy the outcome.</div>
+ <div class="row">
+  <div class="node" id="n1"><div class="n">WHAT'S SOLD</div><div class="t">Equipment</div></div>
+  <div class="arrow" id="a1"></div>
+  <div class="node" id="n2"><div class="n">WHAT IT DOES</div><div class="t">Protection</div></div>
+  <div class="arrow" id="a2"></div>
+  <div class="node goal" id="n3"><div class="n">WHAT'S BOUGHT</div><div class="t">Peace of mind</div></div>
+ </div>
+ <div class="sub" id="s">The customer wasn't buying equipment. They wanted to feel safe.</div>
+</div>
+<div class="marker">S07 · 1:05–1:20 · NARR 02 ¶3 · REVIEW EDIT — NO VOICE-OVER</div>
+<div class="illus">ILLUSTRATIVE DIAGRAM</div>
+</div>
+<script src="../lib/anim.js"></script><script>
+const $=id=>document.getElementById(id);
+function up(el,p,dy=30){el.style.opacity=p;el.style.transform=`translateY(${(1-p)*dy}px)`}
+window.DURATION=15;
+window.renderAt=t=>{
+ const out=1-prog(t,14.3,.7);
+ up($('k'),prog(t,.2,.7)*out); up($('h'),prog(t,.5,.9)*out,40);
+ up($('n1'),prog(t,2.5,.8)*out); $('a1').style.transform=`scaleX(${prog(t,3.6,.9)})`; $('a1').style.opacity=out;
+ up($('n2'),prog(t,4.4,.8)*out); $('a2').style.transform=`scaleX(${prog(t,5.5,.9)})`; $('a2').style.opacity=out;
+ up($('n3'),prog(t,6.3,.9)*out);
+ const g=prog(t,7.6,1.2); $('n3').style.boxShadow=`0 0 ${60*g}px rgba(226,164,88,${.22*g})`;
+ up($('s'),prog(t,9,.9)*out,20);
+};
+renderAt(0);
+</script></body></html>
