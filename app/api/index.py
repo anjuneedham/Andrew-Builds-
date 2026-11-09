@@ -27,7 +27,14 @@ def has_persistent_db() -> bool:
 
 def _diag(stage: str, exc: Exception) -> None:
     """Log ONLY the exception class and SQLSTATE (no message: it can contain hosts, users or SQL) so a 503 can be diagnosed in Vercel logs."""
-    print(f"db-diag stage={stage} error={type(exc).__name__} sqlstate={getattr(exc, 'sqlstate', None)}", flush=True)
+    host = port = "?"
+    try:
+        u = urlsplit(_db_url())
+        host, port = u.hostname or "?", u.port or "default"  # never the user or password
+    except Exception:
+        pass
+    msg = " ".join(str(exc).split())[:120] if stage == "connect" else ""  # libpq connect errors carry no password
+    print(f"db-diag stage={stage} error={type(exc).__name__} sqlstate={getattr(exc, 'sqlstate', None)} host={host} port={port} msg={msg}", flush=True)
 
 
 def _api(method, path, authz, body=b""):
