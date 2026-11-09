@@ -34,6 +34,9 @@ Platform needs only `DATABASE_URL` (any postgres:// URL) + `OWNER_SETUP_TOKEN` (
 ### Vercel project created (2026-11-09, Andrew approved)
 Project `andrew-builds-platform` (team Yardscale Digital), linked to `anjuneedham/Andrew-Builds-`, Root Directory `app`, no env vars yet. Its production branch is the repo default `ccr-e319a82c-wm4cgs` (old hand-over, no content platform): Andrew must set Settings > Git > Production Branch to `ccr-be9f9528-gocxxq` (tool cannot). Database: Neon (Andrew's choice 2026-11-09). Without `DATABASE_URL` every `/api` route answers 503 by design (fails closed). No G3 sign-off for publishing anything; this is the platform only.
 
+### Platform DB env (2026-11-09)
+`core/db.py` now reads `DATABASE_URL`, else `POSTGRES_URL`, else `POSTGRES_URL_NON_POOLING` (what Vercel's Supabase integration creates) and strips `supa=`/`pgbouncer=` options psycopg rejects. 4 new unit tests pass; the 49 DB-backed tests were SKIPPED here (no Postgres in this session). NOT tested against Supabase's transaction pooler or on Vercel. Andrew's Supabase project is in a different org from the one the assistant's connector sees (org "Content platform", project "anjuneedham's Project").
+
 ### Known gaps
 `[RECORD]` L009 (why TradeNotes), L013 (what he decided/checked 8 Nov), L036-L037 (ending, after attempt). C-046 which affiliate programmes are real. Database choice. Q-D1 split of work. Hide-list findings from Gate 1 (plans.ts links, session URLs, Supabase dashboard, public SALES_PLAYBOOK copy P-10) still apply.
 

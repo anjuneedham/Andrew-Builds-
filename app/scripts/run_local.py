@@ -17,7 +17,8 @@ def main():
     ap.add_argument("--env-file", default=str(ROOT / ".env.local"))
     a = ap.parse_args()
     envfile.load(a.env_file, os.environ)
-    if not os.environ.get("DATABASE_URL", "").startswith(("postgres://", "postgresql://")):
+    from core import db as _db
+    if not _db.database_url():
         sys.exit("DATABASE_URL is missing. Copy .env.example to .env.local and paste a postgresql:// URL (a free Neon database works).")
     from dashboard import app
     print(f"Outreach Desk on http://127.0.0.1:{a.port}  (Ctrl+C to stop)")

@@ -18,7 +18,7 @@ _migrated = False
 
 
 def _db_url() -> str:
-    return os.environ.get("DATABASE_URL", "")
+    return db.database_url()
 
 
 def has_persistent_db() -> bool:

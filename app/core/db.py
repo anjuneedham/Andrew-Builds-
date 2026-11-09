@@ -7,6 +7,7 @@ placeholders, translated to the driver's `%s`.
 
 import os
 import re
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from datetime import datetime, timezone
 from decimal import Decimal
 from pathlib import Path
@@ -15,6 +16,29 @@ import psycopg
 
 MIGRATIONS = Path(__file__).resolve().parents[1] / "database" / "migrations"
 MIGRATION_LOCK = 7_262_025  # arbitrary app-wide advisory-lock key
+
+
+# Variables, in order of preference. DATABASE_URL is the explicit choice. POSTGRES_URL / POSTGRES_URL_NON_POOLING are what
+# Vercel's Supabase integration creates (pooled first: it is IPv4 and works from serverless functions).
+URL_VARS = ("DATABASE_URL", "POSTGRES_URL", "POSTGRES_URL_NON_POOLING")
+_DROP_PARAMS = {"supa", "pgbouncer"}  # added by Supabase/Vercel; libpq/psycopg reject them as unknown options
+
+
+def clean_url(url: str) -> str:
+    """Remove query options psycopg cannot parse. Never logs or returns anything but the URL itself."""
+    parts = urlsplit(url)
+    q = [(k, v) for k, v in parse_qsl(parts.query, keep_blank_values=True) if k.lower() not in _DROP_PARAMS]
+    return urlunsplit((parts.scheme, parts.netloc, parts.path, urlencode(q), parts.fragment))
+
+
+def database_url(environ=None) -> str:
+    """First usable postgres URL from URL_VARS, cleaned; "" if none."""
+    env = os.environ if environ is None else environ
+    for name in URL_VARS:
+        v = (env.get(name) or "").strip()
+        if v.startswith(("postgres://", "postgresql://")):
+            return clean_url(v)
+    return ""
 
 
 def now() -> str:
@@ -58,9 +82,9 @@ def _translate(sql: str) -> str:
 
 
 def connect(url: str | None = None, schema: str | None = None) -> Connection:
-    url = url or os.environ.get("DATABASE_URL", "")
+    url = url or database_url()
     if not url.startswith(("postgres://", "postgresql://")):
-        raise RuntimeError("DATABASE_URL must be a postgres:// URL")
+        raise RuntimeError("no postgres:// URL: set DATABASE_URL (or connect the Vercel Supabase integration)")
     raw = psycopg.connect(url, autocommit=True, row_factory=_row_factory, prepare_threshold=None)
     if schema:
         raw.execute(f'SET search_path TO "{schema}"')
