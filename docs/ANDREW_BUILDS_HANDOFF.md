@@ -16,7 +16,7 @@ Approval status: G0 assumed from the kickoff brief (verbatim wording not given; 
 | Recording / Editing / QA / Publishing | Not started |
 | Short-form candidates | isolation test found the leak; "Vulnerable version of Next.js detected": reading the log; passing locally is not shipped |
 | Decisions 2026-11-09 | Fix on camera approved; builds and records on the tablet; voiceover-only; recommends Supabase, Neon for testing; wants affiliate content |
-| Affiliates | Constraint P-12: no affiliate/partnership wording until each programme is CONFIRMED (C-046); disclosure before first mention + in description; no earnings figures; broker mention only with disclaimer and no profitability implication |
+| Affiliates | Constraint P-12: no affiliate/partnership wording until each programme is CONFIRMED (C-046); disclosure before first mention + in description; no earnings figures |
 | Course | Separate packages, one at a time. E003 reuses S23/S25/S28 for M5/M6. Next package after E003 is Andrew's choice |
 | Supabase rollback | **NOT done.** The destructive SQL needed an unanswered confirmation. `tradenotes` schema (10 empty tables, 5 functions) + migration row `20261108173630` still believed present. Awaiting "retry" and the database decision |
 

@@ -30,7 +30,7 @@ TradeNotes repo git log (6 commits, authors, commit 93ed914); `docs/TEST_RESULTS
 - Builds on the tablet **and** records on it (Q-D2 answered). Does not mean the split of work is defined (Q-D1 still open).
 - Voiceover only: footage is tablet screen recordings; no face to camera needed for this episode.
 - Recommends Supabase (OPINION, C-048); Neon for testing a different database (PLANNED, C-050). Database for TradeNotes is **undecided**, so no database claim is spoken as fact.
-- Wants affiliate content using his sales skill. **Constraints in the script and in P-12:** no affiliate/partnership wording until each programme is confirmed (C-046); disclosure before the first affiliate mention and in the description; no earnings figures; broker mention only with the trading disclaimer and no profitability suggestion.
+- Wants affiliate content using his sales skill. **Constraints in the script and in P-12:** no affiliate/partnership wording until each programme is confirmed (C-046); disclosure before the first affiliate mention and in the description; no earnings figures; there is no broker: the "trading platform" is TradeNotes itself (if it ever expands to brokerage, re-gate before any mention).
 
 ## Scope note: the 60-minute course
 The course is separate packages, one at a time. E003 is not the course. Reusable parts: S23 (isolation test), S25 (unit tests), S28 (deploy fix) and the "tests pass locally vs shipped" lesson for M5/M6. Next package after E003 is Andrew's choice (suggestion: course M5, or Idea 2/3).
