@@ -1,4 +1,4 @@
-# E003 Script v1 (DRAFT, awaiting G-SCRIPT)
+# E003 Script v2 (DRAFT, awaiting G-SCRIPT). v2 2026-11-09: deploy count now six, Neon switch added
 
 Episode E003 · Pillar P2 primary / P4 secondary · Arc B · Length guide: expect 7-9 min (about 580 spoken words, roughly 4 min of narration; live test run and fix attempt add screen time, so expect 7-9 min) · **Trading content: yes** · Gate status: G-IDEA [x] G-SCRIPT [ ] G-RECORD [ ] G-EDIT [ ] G-QA [ ] G-PUBLISH [ ]
 Line format: `L### | KIND | text | claims | shot`. Shot IDs are provisional until Gate 3. FACT lines use the claim wording in `claims-register.md`. Any reword is re-checked.
@@ -8,7 +8,7 @@ Voice: Andrew, voiceover over tablet screen recordings. `[RECORD]` = only in you
 | ID | Kind | Text | Claims | Shot |
 |---|---|---|---|---|
 | L001 | FACT | On day one of TradeNotes, a test found that a trade could point at another user's account or strategy. | C-037, C-038 | S01 |
-| L002 | FACT | Then all four of my production deploys failed. | C-040 | S02 |
+| L002 | FACT | Then every one of my production deploys failed. | C-040 | S02 |
 | L003 | FACT | TradeNotes is not live. | C-022 | S02 |
 | L004 | OPINION | This is the day, including the parts that went wrong. | - | S02 |
 
@@ -28,11 +28,11 @@ Voice: Andrew, voiceover over tablet screen recordings. `[RECORD]` = only in you
 ## 3. The build (2:30-4:00)
 | ID | Kind | Text | Claims | Shot |
 |---|---|---|---|---|
-| L014 | FACT | TradeNotes has six commits, all made on 8 November 2026. | C-037 | S05 |
+| L014 | FACT | TradeNotes' first six commits were all made on 8 November 2026. | C-037 | S05 |
 | L015 | FACT | It is built with Next.js and set up to deploy through Vercel. | C-044 | S05 |
 | L016 | FACT | Its billing page uses HandyPay payment links. | C-045 | S06 |
 | L017 | DIRECTION | Scroll the commit list on screen. Hold on the commit messages only (no session URL visible). | - | S05 |
-| L018 | FACT | TradeNotes has 38 unit tests and 15 isolation checks that pass locally. | C-024 | S07 |
+| L018 | FACT | TradeNotes has 38 unit tests, 23 database isolation checks and 28 browser checks that pass locally. | C-024 | S07 |
 | L019 | DIRECTION | Re-run the tests live in a terminal. Show the real result. If it differs from C-024, this section is rewritten. | - | S07 |
 | L020 | OPINION | Passing locally is not the same as shipped. Keep that in mind. | - | S07 |
 
@@ -46,11 +46,13 @@ Voice: Andrew, voiceover over tablet screen recordings. `[RECORD]` = only in you
 | L025 | REFLECTION | I would not have found that by clicking around the app. A test did. | - | S08 |
 | L026 | OPINION | That doesn't make the app secure. It means one hole got found early. | - | S08 |
 
+| L047 | FACT | Since that test, I've switched TradeNotes to Neon and Better Auth, so that exact code has been replaced. | C-054 | S08 |
+
 ## 5. The deploy that wouldn't ship (5:45-7:15)
 | ID | Kind | Text | Claims | Shot |
 |---|---|---|---|---|
 | L027 | DIRECTION | Show the Vercel deployments list (crop out any source/session panel). | - | S09 |
-| L028 | FACT | TradeNotes has had four production deploys on Vercel, and all four failed. | C-040 | S09 |
+| L028 | FACT | TradeNotes has had six production deploys on Vercel, and all six failed. | C-040 | S09 |
 | L029 | FACT | Vercel's error message was: "Vulnerable version of Next.js detected, please update immediately." | C-041 | S10 |
 | L030 | FACT | TradeNotes was pinned to Next.js version 15.5.4. | C-042 | S10 |
 | L031 | OPINION | In plain English, Vercel looked at the framework version and refused to publish the app. | - | S10 |
@@ -70,7 +72,7 @@ Voice: Andrew, voiceover over tablet screen recordings. `[RECORD]` = only in you
 |---|---|---|---|---|
 | L038 | FACT | I use Claude Code and Vercel to build and deploy TradeNotes. | C-047 | S14 |
 | L039 | OPINION | For the database, I recommend Supabase. | C-048 | S14 |
-| L040 | HYPOTHESIS | I'm also going to try Neon for testing a different database. Which one TradeNotes runs on isn't decided. | C-050 [PLANNED] | S14 |
+| L040 | FACT | TradeNotes now uses Neon for its database and Better Auth for sign-in. | C-054 | S14 |
 | L041 | DISCLAIMER | [AFFILIATE DISCLOSURE: ONLY if a real affiliate relationship exists for a named tool. Draft: "Some links in the description are affiliate links. If you sign up through them I may earn a commission, at no extra cost to you."] | C-046 [UNKNOWN: slot stays empty until confirmed] | S14 |
 | L042 | OPINION | I work in sales, so here's my honest pitch: use a tool if it solves the problem you have this week, and check the pricing yourself. | - | S14 |
 | L046 | FACT | **[PUBLISH BLOCKER: say this only once the program is live]** TradeNotes has an affiliate program: affiliates earn 30% of the referred person's first month and 10% for as long as that person stays subscribed. | C-053 [UNKNOWN until built] | S14 |
@@ -86,7 +88,7 @@ Voice: Andrew, voiceover over tablet screen recordings. `[RECORD]` = only in you
 See `claims-register.md`.
 
 ## Open items
-UNKNOWN: C-046 (affiliate programmes, per tool), C-051 (fix outcome), **C-053 (TradeNotes affiliate program must be built before publishing)**. `[RECORD]`: L009, L013, L036-L037. Decisions: database choice (L039-L040), Supabase rollback pending.
+UNKNOWN: C-046 (affiliate programmes, per tool), C-051 (fix outcome), **C-053 (TradeNotes affiliate program must be built before publishing)**. `[RECORD]`: L009, L013, L036-L037. Decisions: database choice (L039), Supabase rollback pending.
 
 ## Checks (manual; app-level checker not built)
-Banned phrases: 0 · Hide list: scripted shots avoid plans.ts, Supabase dashboard, session URLs · Disclaimer: present (L005, L044, description) · FACT lines cite CONFIRMED only: **yes**, except L036 (UNKNOWN by design; blocks the DB gate until the ending is added at G-RECORD) · Digits in non-FACT lines: none · Planned items spoken as plans: L033, L040 · Affiliate wording: none spoken as fact (P-12).
+Banned phrases: 0 · Hide list: scripted shots avoid plans.ts, Supabase dashboard, session URLs · Disclaimer: present (L005, L044, description) · FACT lines cite CONFIRMED only: **yes**, except L036 (UNKNOWN by design; blocks the DB gate until the ending is added at G-RECORD) · Digits in non-FACT lines: none (numbers in L018, L028 are FACT and must be re-checked on recording day) · Planned items spoken as plans: L033, L040 · Affiliate wording: none spoken as fact (P-12).

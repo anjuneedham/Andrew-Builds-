@@ -8,7 +8,7 @@ Approval status: G0 assumed from the kickoff brief (verbatim wording not given; 
 
 | Field | State |
 |---|---|
-| Current content package | **E003** "My first TradeNotes test found a bug. My first deploy failed four times." Arc B, P2 primary / P4 secondary |
+| Current content package | **E003** "My first TradeNotes test found a bug. Then every deploy failed." Arc B, P2 primary / P4 secondary |
 | Package location | `production/episode-003/` (scaffolded with `new_episode.py`); package files in `production/episode-003/package/`: `content-brief.md`, `script.md`, `claims-register.md` (others created at Gates 3-5) |
 | Script status | v1 DRAFT (45 lines, about 580 spoken words, roughly 4 min of narration; live test run and fix attempt add screen time, so expect 7-9 min, 3 `[RECORD]` slots + ending written after recording) |
 | Claim-check status | Manual check done: FACT lines cite CONFIRMED only, except L036 (outcome of the fix, UNKNOWN by design, added at G-RECORD). New claims C-037..C-051 and P-12 added to `docs/CLAIMS_REGISTER.md`. C-046 (affiliates) and C-051 UNKNOWN |
@@ -24,6 +24,9 @@ Approval status: G0 assumed from the kickoff brief (verbatim wording not given; 
 - **E003 cannot be published until the TradeNotes affiliate program (30% first month, 10% while subscribed) is built and working** (C-052 PLANNED, C-053 UNKNOWN, script line L046). Build is a separate, unstarted task.
 - **Supabase rollback on HOLD** at Andrew's instruction ("wait for supabase"). Not run.
 - Affiliate research for third-party tools: no public commission programme found for Claude (individuals), Supabase, HandyPay, Neon; Vercel has affiliate terms (rates not found). C-046 remains UNKNOWN.
+
+### UPDATE 2026-11-09: TradeNotes moved to Neon + Better Auth (commits d1d8016, d52fa1e)
+No Supabase needed by the app. 6 production deploys now, all failed with VULNERABLE_NEXTJS_VERSION (Next.js still 15.5.4). Working title changed to drop the count ("Then every deploy failed"). Script v2 re-cites C-024/C-037/C-040, adds C-054. Priority per Andrew: finish script/visuals and post (Andrew posts; never me). Link-live path: Neon project + env vars + Next.js upgrade on camera (S11-S13). Record the failed-deploy screens BEFORE the fix.
 
 ### Known gaps
 `[RECORD]` L009 (why TradeNotes), L013 (what he decided/checked 8 Nov), L036-L037 (ending, after attempt). C-046 which affiliate programmes are real. Database choice. Q-D1 split of work. Hide-list findings from Gate 1 (plans.ts links, session URLs, Supabase dashboard, public SALES_PLAYBOOK copy P-10) still apply.

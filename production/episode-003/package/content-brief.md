@@ -7,8 +7,8 @@ Status: **G-IDEA APPROVED by Andrew (2026-11-09, "Approved G-IDEA E003").** G-SC
 | Content ID | `E003` (internal). The public title carries no number (E001/E002 are unrecorded Outreach Desk drafts; see Q-B2) |
 | Episode number | 3 (internal) |
 | Series / course | The Bootstrapper Experiment, Arc B (TradeNotes). Also feeds the course: M5 (S19, S23, S25) and M6 (S28) |
-| Working title | My first TradeNotes test found a bug. My first deploy failed four times. |
-| Core idea | On 8 Nov 2026 Claude Code built a trading-journal app in one day. A two-user test found a cross-user bug; then Vercel blocked all four production deploys over the Next.js version. Andrew tries the fix on camera. TradeNotes is not live |
+| Working title | My first TradeNotes test found a bug. Then every deploy failed. |
+| Core idea | On 8 Nov 2026 Claude Code built a trading-journal app in one day. A two-user test found a cross-user bug; then Vercel blocked every production deploy (six so far) over the Next.js version. Andrew tries the fix on camera. TradeNotes is not live |
 | Audience | Primary: people from sales/service/online business curious about building software with AI. Secondary: solo founders using Claude Code |
 | Pillars | P2 SaaS with AI (primary), P4 trading-journal journey (secondary) |
 | Purpose | Start Arc B honestly; show the real "tests pass locally, deploy fails" gap; give the course real M5/M6 material |

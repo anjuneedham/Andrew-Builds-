@@ -1,7 +1,7 @@
 # Claims Register (seed, file-based until platform P2)
 
 Seeded 2026-11-08 from the dossier production source pack (`10_production_source_pack.md` §5 and §2) and the founder answers (`11_founder_answers_update.md`). Statuses use the platform vocabulary. "CONFIRMED-BY-FOUNDER" in the dossier = `CONFIRMED` with source kind `founder_answer`.
-Rules: only CONFIRMED claims may back a FACT line (Q7 strict). Wording is fixed: changing a statement voids its verification. Codes match the platform's `C-###` format; when imported, advance `claims_code_seq` past C-053.
+Rules: only CONFIRMED claims may back a FACT line (Q7 strict). Wording is fixed: changing a statement voids its verification. Codes match the platform's `C-###` format; when imported, advance `claims_code_seq` past C-054.
 **Repo is public: do not add partner names/terms, user names, keys or links here.**
 
 | Code | Statement (exact wording allowed in FACT lines) | Project | Status | Source kind: reference | Limitations / re-check |
@@ -29,7 +29,7 @@ Rules: only CONFIRMED claims may back a FACT line (Q7 strict). Wording is fixed:
 | C-021 | TradeNotes development started on 8 November 2026. | tradenotes | CONFIRMED | commit: git (6 commits 13:52-17:38 UTC) | Re-check (Q-E3) |
 | C-022 | TradeNotes is not live. | tradenotes | CONFIRMED | deployment: Vercel (4 production deploys in ERROR) | Re-check before filming |
 | C-023 | TradeNotes backtesting has not been started. | tradenotes | CONFIRMED | document: IMPLEMENTATION_STATUS.md | Re-check |
-| C-024 | TradeNotes has 38 unit tests and 15 isolation checks that pass locally. | tradenotes | CONFIRMED | document: TEST_RESULTS.md | Local runs only |
+| C-024 | TradeNotes has 38 unit tests, 23 database isolation checks and 28 browser checks that pass locally. | tradenotes | CONFIRMED | document: TEST_RESULTS.md | Local runs only |
 | C-025 | All four TradeNotes production deploys failed because Vercel blocked a vulnerable Next.js version. | tradenotes | CONFIRMED | deployment: Vercel API 2026-11-08 | Re-check; may be fixed on camera (S28) |
 | C-026 | TradeNotes has a CSV import library but no import screen. | tradenotes | PARTIALLY_CONFIRMED | document: IMPLEMENTATION_STATUS.md | Library only; re-check |
 | C-027 | TradeNotes billing uses two payment links with manual activation and is not deployed. | tradenotes | PARTIALLY_CONFIRMED | record: plans.ts, DEPLOYMENT.md | Do not show real links |
@@ -42,10 +42,10 @@ Rules: only CONFIRMED claims may back a FACT line (Q7 strict). Wording is fixed:
 | C-034 | Andrew posts on Instagram. | andrew-builds | UNKNOWN | - | Q-G1 |
 | C-035 | Andrew learned to build with AI from YouTube. | andrew-builds | UNKNOWN | - | Q-A8 |
 | C-036 | Journaling and backtesting can improve trading discipline. | tradenotes | UNKNOWN | - | Andrew's belief only: HYPOTHESIS line, never FACT |
-| C-037 | TradeNotes has six commits, all made on 8 November 2026. | tradenotes | CONFIRMED | commit: git log 13:52:25-17:38:57 UTC (read 8 Nov) | Re-check on recording day |
-| C-038 | Two-user isolation tests found that a trade could point at another user's account or strategy. | tradenotes | CONFIRMED | commit: 93ed914; document: TEST_RESULTS.md "Bug found by testing" | Local test harness (shim of the auth schema); not run on a deployed database |
+| C-037 | TradeNotes' first six commits were all made on 8 November 2026. | tradenotes | CONFIRMED | commit: git log 13:52:25-17:38:57 UTC (read 8 Nov) | Eight commits exist as of 9 Nov (two more on 9 Nov, Neon switch). Re-check |
+| C-038 | Two-user isolation tests found that a trade could point at another user's account or strategy. | tradenotes | CONFIRMED | commit: 93ed914; document: TEST_RESULTS.md "Bug found by testing" | Found in the first (Supabase-era) version; the data layer was later replaced by Neon + Better Auth (C-054). Local harness, not a deployed database |
 | C-039 | The fix was committed together with the tests that found the bug. | tradenotes | CONFIRMED | commit: 93ed914 (tests + ownership triggers in one commit) | Says nothing about the app being secure overall |
-| C-040 | TradeNotes has had four production deploys on Vercel, and all four failed. | tradenotes | CONFIRMED | deployment: Vercel API, 4 deploys read individually 8 Nov | Changes once the fix deploys: re-check; amend wording after the on-camera attempt |
+| C-040 | TradeNotes has had six production deploys on Vercel, and all six failed. | tradenotes | CONFIRMED | deployment: Vercel API, 6 deploys listed 9 Nov; 4 earlier + latest 2 read individually (all VULNERABLE_NEXTJS_VERSION) | Count rises with every push: re-check the number on recording day; changes once the fix deploys |
 | C-041 | Vercel's error message was: "Vulnerable version of Next.js detected, please update immediately." | tradenotes | CONFIRMED | deployment: Vercel errorCode VULNERABLE_NEXTJS_VERSION, step build | Quote exact |
 | C-042 | TradeNotes was pinned to Next.js version 15.5.4. | tradenotes | CONFIRMED | record: package.json at commit 1ce3aa0 | Changes when upgraded |
 | C-043 | Every TradeNotes commit lists Claude as the author. | tradenotes | CONFIRMED | commit: git log, 6 of 6 | Does not state the Andrew/Claude split (Q-D1); use with C-019 |
@@ -55,10 +55,11 @@ Rules: only CONFIRMED claims may back a FACT line (Q7 strict). Wording is fixed:
 | C-047 | Andrew uses Claude Code and Vercel to build and deploy TradeNotes. | tradenotes | CONFIRMED | record: git trailers, Vercel deploys by his account; founder_answer 2026-11-09 | - |
 | C-048 | Andrew recommends Supabase for the database. | andrew-builds | CONFIRMED | founder_answer: 2026-11-09 | His opinion: OPINION lines only |
 | C-049 | Andrew plans to upgrade Next.js on camera and redeploy TradeNotes. | tradenotes | PLANNED | founder_answer: 2026-11-09 approval | Outcome unknown |
-| C-050 | Andrew plans to try Neon for testing a different database. | tradenotes | PLANNED | founder_answer: 2026-11-09 | Which database TradeNotes runs on is undecided |
+| C-050 | Andrew plans to try Neon for testing a different database. | tradenotes | PLANNED | founder_answer: 2026-11-09 | SUPERSEDED by C-054 (code already switched to Neon). Do not use |
 | C-051 | The outcome of the on-camera Next.js upgrade and redeploy. | tradenotes | UNKNOWN | - | Created from the recording itself; script ending lines added at G-RECORD |
 | C-052 | TradeNotes will pay affiliates 30% of the referred person's first month and 10% for as long as that person stays subscribed. | tradenotes | PLANNED | founder_answer: 2026-11-09 | Interpretation to confirm (percent of what the subscriber pays; per referred person). Not built. Terms, tracking and payout method undecided |
 | C-053 | TradeNotes has a live affiliate program with those terms. | tradenotes | UNKNOWN | - | **PUBLISH BLOCKER for E003.** Becomes CONFIRMED only when the program exists and works (page, tracking, payout method, terms) |
+| C-054 | TradeNotes now uses Neon for its database and Better Auth for sign-in. | tradenotes | CONFIRMED | commit: d1d8016 (9 Nov); .env.example | Code only; no Neon project confirmed live. Supabase no longer used by the app |
 
 ## Prohibited statements (never claim; no platform status exists for "false")
 P-1 Agriloop is a commercial success or has revenue/orders beyond C-011. P-2 TradeNotes is live, launching, has users, revenue or working backtesting. P-3 Andrew is a profitable or successful trader; any trading performance. P-4 Andrew has paid-ads SaaS experience; the YardScale site line "runs the paid distribution" must not be repeated. P-5 Any client name, testimonial, price, guarantee or timeline. P-6 Any mention of the operating partner, her business, or terms. P-7 Any real user's name or message. P-8 "I moved on from Agriloop" (undecided until 30 Nov). P-9 Expertise in Postgres/RLS/DevOps ("learning, verifying with tests"). P-10 "Journaling changed my results" / "kept making the same mistakes until journaling" (contradicted by founder). P-11 Jamaica "has ~200,000 farmers" (unsourced). P-12 Any affiliate, sponsorship or partnership with Vercel, Anthropic/Claude, Supabase, Neon, HandyPay or a trading platform/broker unless C-046 is CONFIRMED for that exact party; any income, commission or earnings figure; any suggestion that using a tool or broker will make someone profitable.
