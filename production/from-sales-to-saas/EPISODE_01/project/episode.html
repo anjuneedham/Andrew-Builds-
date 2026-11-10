@@ -6,7 +6,7 @@ window.DURATION=SC[SC.length-1].e; let cur=null,els=[];
 const q=new URLSearchParams(location.search); if(q.get('scene')){const s=SC.find(x=>x.id==q.get('scene'));window.START=s.s;window.DURATION=s.e-s.s;} else window.START=0;
 function mount(sc){document.getElementById('scene').innerHTML=sc.html();cur=sc;
  els=[...document.querySelectorAll('#scene [data-a]')].map(el=>{const [type,st,du,arg]=el.dataset.a.split(' ');return {el,type,st:+st,du:+du,arg:+arg}});
- document.getElementById('mk').textContent=`${sc.id} · ${fmt(sc.s)}–${fmt(sc.e)} · NARR ${sc.narr} · REVIEW EDIT — NO VOICE-OVER`;
+ document.getElementById('mk').style.display=q.get('clean')?'none':'';document.getElementById('mk').textContent=`${sc.id} · ${fmt(sc.s)}–${fmt(sc.e)} · NARR ${sc.narr} · REVIEW EDIT — NO VOICE-OVER`;
  const il=document.getElementById('il');il.textContent=sc.lab;il.style.display=sc.lab?'':'none';}
 window.renderAt=lt=>{const T=window.START+lt;const sc=SC.find(x=>T>=x.s&&T<x.e)||SC[SC.length-1];if(sc!==cur)mount(sc);
  const t=T-sc.s,D=sc.e-sc.s;

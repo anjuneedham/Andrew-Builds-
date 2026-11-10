@@ -25,3 +25,4 @@ Concat/caption commands (from EPISODE_01/exports):
 `ls scenes/S*.mp4|sort|sed "s/^/file '/;s/$/'/">concat.txt; ffmpeg -f concat -safe 0 -i concat.txt -c copy v.mp4`
 soft subs: `ffmpeg -i v.mp4 -i ../EP01_captions_ESTIMATED_v001.srt -map 0 -map 1 -c copy -c:s mov_text EP01_REVIEW_visual-first_v001.mp4`
 burned: `-vf "subtitles=../EP01_captions_ESTIMATED_v001.srt:force_style='FontName=Inter,FontSize=11,PrimaryColour=&H00DAE7EF,BackColour=&H99000000,BorderStyle=4,Outline=4,Shadow=0,MarginV=10'"`
+| 2026-11-10 | EP01 | Andrew approved edit; review marker removed (clean re-render, v002); offline recording script made | exports/EP01_REVIEW_visual-first_CLEAN_v002.mp4; EPISODE_01/recording/EP01_RECORDING_SCRIPT.{pdf,md} | 28 scenes, 7:00, 12,600 frames, decode OK | Top-right "illustrative" labels kept on purpose; captions still ESTIMATED | Awaiting Andrew's voice-over | Edit ✔ approved |
