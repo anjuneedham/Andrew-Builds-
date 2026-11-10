@@ -18,3 +18,10 @@
 HTML/CSS/SVG scene per shot → Playwright/Chromium (pre-installed) sets time per frame via `window.renderAt(t)` → PNG frames piped to FFmpeg 6.1 (libx264, CRF 18). Deterministic, no new dependencies, nothing paid or external. Remotion not used (not installed; would add a framework).
 Speed: ~0.57 s/frame single process → a 7:00 episode ≈ 2 h serial; plan to render scenes 4 in parallel (4 CPUs) ≈ 35–45 min, re-rendering only changed scenes.
 Storage: ~1.5 MB per 15 s → ~45 MB per episode master.
+| 2026-11-10 | EP01 | Andrew approved style, keep 7:00 now / extend after VO; confirmed stories | — | — | — | — | Style ✔ |
+| 2026-11-10 | EP01 | Gate 3–5: S01–S28 built, rendered, captioned, QA | project/{episode.html,scenes.js,lib/*,render_all.js,stills.js}; exports/EP01_REVIEW_visual-first_v001.mp4 (+_CAPTIONED); EP01_captions_ESTIMATED_v001.srt; all EP01 docs; EP02 brief + gate; EP03–09 briefs | 28 scenes, 4 workers, ~6 min (JPEG frames) | PASS w/ known issues (EP01_QA_REPORT.md) | Captions estimated; NARR 04 too fast to read | **Waiting for Andrew review** |
+
+Concat/caption commands (from EPISODE_01/exports):
+`ls scenes/S*.mp4|sort|sed "s/^/file '/;s/$/'/">concat.txt; ffmpeg -f concat -safe 0 -i concat.txt -c copy v.mp4`
+soft subs: `ffmpeg -i v.mp4 -i ../EP01_captions_ESTIMATED_v001.srt -map 0 -map 1 -c copy -c:s mov_text EP01_REVIEW_visual-first_v001.mp4`
+burned: `-vf "subtitles=../EP01_captions_ESTIMATED_v001.srt:force_style='FontName=Inter,FontSize=11,PrimaryColour=&H00DAE7EF,BackColour=&H99000000,BorderStyle=4,Outline=4,Shadow=0,MarginV=10'"`

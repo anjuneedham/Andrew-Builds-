@@ -1,0 +1,546 @@
+1
+00:00:00,000 --> 00:00:05,052
+I started building software because I
+had a problem I couldn't solve the way I
+
+2
+00:00:05,132 --> 00:00:05,736
+wanted to.
+
+3
+00:00:05,816 --> 00:00:11,552
+I was trying to sell pigs, and I couldn't
+find the right way to connect with buyers
+
+4
+00:00:11,632 --> 00:00:14,288
+at a price I believed they were worth.
+
+5
+00:00:14,368 --> 00:00:17,025
+At the time, I wasn't
+a software developer.
+
+6
+00:00:17,105 --> 00:00:20,446
+I was coming from sales, customer
+service, and online business.
+
+7
+00:00:20,526 --> 00:00:25,236
+But that one problem eventually led me to
+build Agriloop, a marketplace designed to
+
+8
+00:00:25,316 --> 00:00:26,604
+connect farmers with consumers.
+
+9
+00:00:26,684 --> 00:00:30,367
+And that changed the direction
+I was taking with my work.
+
+10
+00:00:30,447 --> 00:00:34,131
+This is not a story about building
+a million-dollar company overnight.
+
+11
+00:00:34,211 --> 00:00:38,236
+It's about what happens when someone from
+a completely different background decides
+
+12
+00:00:38,316 --> 00:00:43,709
+to learn how to build software, tries to
+turn a real problem into a product, and
+
+13
+00:00:43,789 --> 00:00:48,157
+discovers that getting the product
+working is only one part of the job.
+
+14
+00:00:48,237 --> 00:00:51,920
+I'm Andrew, and this is the
+journey from sales to SaaS.
+
+15
+00:00:52,000 --> 00:00:55,808
+Before software, I spent time working in
+sales, customer service, and corporate
+
+16
+00:00:55,888 --> 00:00:56,132
+environments.
+
+17
+00:00:56,212 --> 00:01:00,993
+One of the biggest lessons I learned was
+that people aren't always buying the thing
+
+18
+00:01:01,073 --> 00:01:01,641
+you're selling.
+
+19
+00:01:01,721 --> 00:01:04,233
+They're buying what that
+thing means to them.
+
+20
+00:01:04,313 --> 00:01:07,473
+In one of my roles, I worked
+around security systems.
+
+21
+00:01:07,553 --> 00:01:09,417
+The customer wasn't
+simply buying equipment.
+
+22
+00:01:09,497 --> 00:01:11,037
+They wanted to feel safe.
+
+23
+00:01:11,117 --> 00:01:12,657
+They wanted peace of mind.
+
+24
+00:01:12,737 --> 00:01:14,926
+That changed how I thought about sales.
+
+25
+00:01:15,006 --> 00:01:19,462
+You have to understand what matters to the
+customer, what the company can actually
+
+26
+00:01:19,542 --> 00:01:23,674
+deliver, and how to find a solution
+that makes sense for both sides.
+
+27
+00:01:23,754 --> 00:01:27,886
+I also learned that a customer's
+problem can have more than one layer.
+
+28
+00:01:27,966 --> 00:01:32,747
+For example, when helping people with flight
+bookings, I dealt with a family of four
+
+29
+00:01:32,827 --> 00:01:34,043
+travelling with eight bags.
+
+30
+00:01:34,123 --> 00:01:37,607
+The baggage rules created another
+problem they hadn't fully accounted for.
+
+31
+00:01:37,687 --> 00:01:42,467
+I looked at the situation from their
+perspective and offered an option for the extra
+
+32
+00:01:42,547 --> 00:01:42,792
+baggage.
+
+33
+00:01:42,872 --> 00:01:44,412
+It was a simple lesson:
+
+34
+00:01:44,492 --> 00:01:47,328
+don't just respond to the
+first thing someone says.
+
+35
+00:01:47,408 --> 00:01:49,920
+Understand the situation they're
+actually trying to solve.
+
+36
+00:01:50,000 --> 00:01:53,576
+That way of thinking followed
+me into online business.
+
+37
+00:01:53,656 --> 00:01:58,451
+I started building my own experience
+around trading and other online ventures.
+
+38
+00:01:58,531 --> 00:02:03,733
+I've spent approximately seven years
+trading, although my results are not where I
+
+39
+00:02:03,812 --> 00:02:05,358
+want them to be.
+
+40
+00:02:05,438 --> 00:02:08,607
+This is a software project,
+not trading advice.
+
+41
+00:02:08,688 --> 00:02:12,264
+Trading is high risk
+and you can lose money.
+
+42
+00:02:12,344 --> 00:02:18,764
+My own trading results aren't where I
+want them to be, and nothing here is a
+
+43
+00:02:18,844 --> 00:02:21,201
+recommendation to buy or sell anything.
+
+44
+00:02:21,281 --> 00:02:25,264
+I also started YardScale Digital,
+working around websites, marketing, lead
+
+45
+00:02:25,344 --> 00:02:26,889
+generation, and digital systems.
+
+46
+00:02:26,969 --> 00:02:32,576
+I was learning how to find customers,
+explain an offer, understand what a business
+
+47
+00:02:32,656 --> 00:02:36,232
+needed, and turn that into
+something I could deliver.
+
+48
+00:02:36,312 --> 00:02:42,732
+One of the things I learned is that what a
+client expects and what can realistically
+
+49
+00:02:42,812 --> 00:02:47,607
+be delivered within a particular
+budget are not always the same thing.
+
+50
+00:02:47,688 --> 00:02:54,107
+That pushed me to think more seriously
+about the kind of business I wanted to build
+
+51
+00:02:54,188 --> 00:02:54,920
+long term.
+
+52
+00:02:55,000 --> 00:02:56,887
+Then I had an experience that
+changed how I looked at software.
+
+53
+00:02:56,967 --> 00:02:58,363
+I came across a client who had an app.
+
+54
+00:02:58,443 --> 00:03:00,822
+That made me think differently about
+what I could offer and what I could build
+
+55
+00:03:00,902 --> 00:03:00,986
+myself.
+
+56
+00:03:01,066 --> 00:03:02,297
+I had already been
+experimenting with AI tools.
+
+57
+00:03:02,377 --> 00:03:04,756
+I started using them to help with websites,
+and I realised they could shorten the
+
+58
+00:03:04,836 --> 00:03:06,395
+time it took to turn an
+idea into something working.
+
+59
+00:03:06,475 --> 00:03:08,363
+I began learning more through research,
+YouTube, experimenting, and asking AI to
+
+60
+00:03:08,443 --> 00:03:09,018
+explain things to me.
+
+61
+00:03:09,098 --> 00:03:10,986
+I started with ChatGPT and later used
+Claude heavily, especially for development.
+
+62
+00:03:11,066 --> 00:03:11,805
+I wasn't an expert programmer.
+
+63
+00:03:11,885 --> 00:03:14,428
+I had taught myself some coding concepts
+and languages, but I still had a lot to
+
+64
+00:03:14,508 --> 00:03:14,592
+learn.
+
+65
+00:03:14,672 --> 00:03:17,051
+A client who already had an app helped me
+see that software development could become
+
+66
+00:03:17,131 --> 00:03:18,035
+part of the work I did.
+
+67
+00:03:18,115 --> 00:03:20,002
+Without that experience, I might have
+continued focusing mainly on agency services.
+
+68
+00:03:20,082 --> 00:03:22,625
+My uncle also kept reminding me that I
+was only scratching the surface of what AI
+
+69
+00:03:22,705 --> 00:03:25,084
+could do, and encouraged me to become better
+at explaining what I wanted from these
+
+70
+00:03:25,164 --> 00:03:25,248
+tools.
+
+71
+00:03:25,328 --> 00:03:27,051
+The important shift was that
+I could now guide the process:
+
+72
+00:03:27,131 --> 00:03:29,018
+describe the outcome, understand the
+structure, review what was being created, test
+
+73
+00:03:29,098 --> 00:03:29,674
+it, and keep improving.
+
+74
+00:03:29,754 --> 00:03:30,822
+I still had to make the decisions.
+
+75
+00:03:30,902 --> 00:03:33,281
+AI could help me move faster, but it
+could not decide what customers needed or
+
+76
+00:03:33,361 --> 00:03:34,264
+whether a business idea made sense.
+
+77
+00:03:34,344 --> 00:03:35,740
+My first experiments were not
+all serious business products.
+
+78
+00:03:35,820 --> 00:03:37,871
+I worked on websites, tried building a
+game, and explored different app ideas.
+
+79
+00:03:37,951 --> 00:03:38,854
+Some of those experiments went nowhere.
+
+80
+00:03:38,934 --> 00:03:41,313
+But each one taught me something about
+turning an idea into a working product, and
+
+81
+00:03:41,393 --> 00:03:43,281
+about the difference between getting
+something to run and making something people
+
+82
+00:03:43,361 --> 00:03:43,609
+actually want.
+
+83
+00:03:43,689 --> 00:03:45,248
+Over a relatively short period,
+I created around 35 repositories.
+
+84
+00:03:45,328 --> 00:03:46,559
+That doesn't mean I created
+35 successful businesses.
+
+85
+00:03:46,639 --> 00:03:48,690
+It means I was experimenting, learning,
+and getting more comfortable with the tools
+
+86
+00:03:48,770 --> 00:03:49,182
+and the process.
+
+87
+00:03:49,262 --> 00:03:50,986
+I was also beginning to see a
+different opportunity for YardScale.
+
+88
+00:03:51,066 --> 00:03:53,117
+Instead of only helping businesses with
+marketing and websites, I could move further
+
+89
+00:03:53,197 --> 00:03:54,920
+into building software products and
+working through the problems behind them.
+
+90
+00:03:55,000 --> 00:03:59,304
+Then came the problem
+that led to Agriloop.
+
+91
+00:03:59,384 --> 00:04:03,139
+I had been trying to sell pigs.
+
+92
+00:04:03,219 --> 00:04:10,810
+I believed they were worth a certain
+price, but finding the right buyer was
+
+93
+00:04:10,890 --> 00:04:11,358
+difficult.
+
+94
+00:04:11,438 --> 00:04:19,578
+I started looking at how people were using
+social media and other online spaces to
+
+95
+00:04:19,658 --> 00:04:21,769
+sell livestock and produce.
+
+96
+00:04:21,849 --> 00:04:28,893
+I began thinking about a marketplace
+where farmers could connect with buyers in
+
+97
+00:04:28,973 --> 00:04:32,180
+their own parish and
+neighbouring parishes.
+
+98
+00:04:32,260 --> 00:04:33,824
+That became Agriloop.
+
+99
+00:04:33,904 --> 00:04:37,112
+Development started on 13 September 2026.
+
+100
+00:04:37,192 --> 00:04:39,852
+The first idea was straightforward:
+
+101
+00:04:39,932 --> 00:04:48,619
+give farmers a way to create listings and
+give buyers a way to discover what was
+
+102
+00:04:48,699 --> 00:04:49,167
+available.
+
+103
+00:04:49,247 --> 00:04:56,838
+But turning that idea into software meant
+learning a lot more than I expected.
+
+104
+00:04:56,918 --> 00:05:02,317
+There were databases, user accounts,
+listings, messaging, design decisions, bugs,
+
+105
+00:05:02,397 --> 00:05:08,345
+and a lot of small details
+that had to work together.
+
+106
+00:05:08,425 --> 00:05:14,920
+I kept working through those challenges
+until Agriloop reached a working beta.
+
+107
+00:05:15,000 --> 00:05:21,062
+And that's where this
+journey really starts.
+
+108
+00:05:21,142 --> 00:05:33,345
+Because getting an app to work is
+not the same as building a business.
+
+109
+00:05:33,425 --> 00:05:44,750
+You still have to find the right people,
+understand whether the problem matters
+
+110
+00:05:44,830 --> 00:05:56,156
+enough, earn trust, and give customers
+a reason to use what you've built.
+
+111
+00:05:56,236 --> 00:06:02,297
+I am still figuring those things out.
+
+112
+00:06:02,377 --> 00:06:15,458
+In this series, I'm going to break down
+the decisions, the tools, the mistakes, and
+
+113
+00:06:15,538 --> 00:06:24,231
+the lessons behind building software
+products from the ground up.
+
+114
+00:06:24,311 --> 00:06:28,618
+Not just the finished screens.
+
+115
+00:06:28,698 --> 00:06:32,128
+The thinking behind them.
+
+116
+00:06:32,208 --> 00:06:40,901
+And the first question we
+need to answer is simple:
+
+117
+00:06:40,981 --> 00:06:47,920
+How do you find a problem worth solving?
+

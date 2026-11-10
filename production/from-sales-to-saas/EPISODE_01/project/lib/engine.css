@@ -1,0 +1,22 @@
+/* Episode engine additions (keeps base.css tokens). Marker/label move to top so captions own the bottom. */
+.marker{top:34px;bottom:auto}
+.illus{top:28px;bottom:auto}
+.safe{bottom:190px}
+#scene{position:absolute;inset:0}
+.h1{font-weight:700;font-size:100px;line-height:1.02;letter-spacing:-.025em}
+.h2{font-weight:600;font-size:64px;line-height:1.08;letter-spacing:-.02em}
+.h3{font-weight:600;font-size:40px;letter-spacing:-.01em}
+.body{font-size:34px;color:var(--mute);line-height:1.35}
+.acc{color:var(--accent)}
+.abs{position:absolute}
+.card{position:absolute;border:1.5px solid var(--line);background:var(--bg2);border-radius:6px;padding:28px 34px}
+.card .n{font-family:var(--mono);font-size:18px;color:var(--mute);letter-spacing:.2em;margin-bottom:14px;text-transform:uppercase}
+.card .t{font-size:44px;font-weight:600;letter-spacing:-.015em}
+.card.hi{border-color:var(--accent)} .card.hi .t{color:var(--accent)}
+.ln{position:absolute;height:2px;background:#5a5045;transform-origin:left center}
+.ln.arw:after{content:"";position:absolute;right:-2px;top:-7px;border-left:14px solid #5a5045;border-top:8px solid transparent;border-bottom:8px solid transparent}
+.tag{display:inline-block;font-family:var(--mono);font-size:22px;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid var(--line);padding:12px 20px;margin:0 14px 14px 0;color:var(--ink)}
+.folder{position:absolute;background:#1d1a16;border:1.5px solid #463e34;border-radius:4px 10px 10px 10px}
+.folder .tabh{position:absolute;top:-46px;left:-1.5px;height:46px;padding:0 26px;background:#1d1a16;border:1.5px solid #463e34;border-bottom:none;border-radius:8px 8px 0 0;font-family:var(--mono);font-size:18px;letter-spacing:.18em;line-height:46px;color:var(--accent)}
+.note{font-style:italic;font-weight:300;color:#d8cbb4}
+svg{position:absolute;overflow:visible}

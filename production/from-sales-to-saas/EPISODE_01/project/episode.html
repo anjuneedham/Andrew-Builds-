@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="lib/base.css"><link rel="stylesheet" href="lib/engine.css"></head>
+<body><div id="stage"><div class="grain"></div><div id="scene"></div><div class="marker" id="mk"></div><div class="illus" id="il"></div></div>
+<script src="lib/anim.js"></script><script src="lib/illus.js"></script><script src="scenes.js"></script><script>
+const fmt=s=>`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,'0')}`;
+window.DURATION=SC[SC.length-1].e; let cur=null,els=[];
+const q=new URLSearchParams(location.search); if(q.get('scene')){const s=SC.find(x=>x.id==q.get('scene'));window.START=s.s;window.DURATION=s.e-s.s;} else window.START=0;
+function mount(sc){document.getElementById('scene').innerHTML=sc.html();cur=sc;
+ els=[...document.querySelectorAll('#scene [data-a]')].map(el=>{const [type,st,du,arg]=el.dataset.a.split(' ');return {el,type,st:+st,du:+du,arg:+arg}});
+ document.getElementById('mk').textContent=`${sc.id} · ${fmt(sc.s)}–${fmt(sc.e)} · NARR ${sc.narr} · REVIEW EDIT — NO VOICE-OVER`;
+ const il=document.getElementById('il');il.textContent=sc.lab;il.style.display=sc.lab?'':'none';}
+window.renderAt=lt=>{const T=window.START+lt;const sc=SC.find(x=>T>=x.s&&T<x.e)||SC[SC.length-1];if(sc!==cur)mount(sc);
+ const t=T-sc.s,D=sc.e-sc.s;
+ for(const a of els){const p=prog(t,a.st,a.du),s=a.el.style;
+  if(a.type=='up'){s.opacity=p;s.transform=`translateY(${(1-p)*30}px)`}
+  else if(a.type=='fade'){s.opacity=p}
+  else if(a.type=='fadeout'){s.opacity=1-p}
+  else if(a.type=='draw'){s.transform=`scaleX(${p})`}
+  else if(a.type=='drawto'){s.transform=`scaleX(${p*a.arg})`}
+  else if(a.type=='drawy'){s.transform=`scaleY(${p})`}
+  else if(a.type=='pop'){s.opacity=p;s.transform=`scale(${.9+.1*p})`;s.transformOrigin='center';s.transformBox='fill-box'}
+  else if(a.type=='push'){const l=clamp((t-a.st)/a.du);s.transform=`scale(${1+.07*l})`;s.transformOrigin='50% 60%'}
+  else if(a.type=='hl'){s.color=p>.5?'var(--accent)':'';s.borderColor=p>.5?'var(--accent)':''}}
+ const first=sc===SC[0];const o=Math.min(first?1:prog(t,0,.4),1-prog(t,D-.45,.45));
+ document.getElementById('scene').style.opacity=o;};
+renderAt(0);
+</script></body></html>
